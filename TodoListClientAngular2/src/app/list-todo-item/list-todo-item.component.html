@@ -1,0 +1,27 @@
+<section class="root" [style.backgroundColor]="getColor()">
+  <h3>
+    {{getName()}}
+  </h3>
+  <table id="tableItemDetails">
+    <th class="thTableItemDetails">
+     <tr>
+       <td>
+        <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
+          <!--<label>Add a new item:</label>-->
+          <input type="text" #newItemLabel placeholder="Entrée..."/>
+        </form>
+      </td>
+     </tr>
+    </th>
+    <tbody>
+      <tr *ngFor="let item of getItems(); let i = index" class="trTableItemDetails">
+          <app-todo-item
+                       [clock]="item.clock"
+                       [item]="item"
+                       [listId]="list.id"
+                       [index]="i">
+          </app-todo-item>
+      </tr>
+    </tbody>
+  </table>
+</section>

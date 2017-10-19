@@ -1,0 +1,40 @@
+header {
+  display: flex;
+  flex-flow: row;
+  background: #2c3e50;
+  margin: 0;
+  padding: 0.5em;
+  border-bottom: solid #e67e22 3px;
+  color: #ffffff;
+}
+
+header > h1,  header > h1 a{
+  flex: 1 1 auto;
+  color: #ecf0f1;
+}
+
+header > section.user {
+  flex: 0 1 auto;
+  display: flex;
+  flex-flow: column;
+}
+
+header img.photo {
+  width: 5em;
+  height: 5em;
+  margin-left: 1em;
+  vertical-align: center;
+}
+
+section.connection {
+  padding: 0;
+  margin: 0;
+  flex: 1 1;
+}
+
+section.connection > label:hover {
+  background: yellow;
+}
+header .user{
+  font-size: 13px;
+}

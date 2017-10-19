@@ -1,0 +1,14 @@
+<header *ngIf="getUser()">
+  <h1><a [routerLink]="['/lists']">{{title}}</a></h1>
+  <section class="user">
+    <label>Identifié via {{getUserProvider()}}</label>
+    <section class="connection">
+      <label *ngIf="getConnected() | async">✅ connecté</label>
+      <label *ngIf="!(getConnected() | async)" (click)="tryReconnectSocket()">✗ déconnecté</label>
+    </section>
+    <label>{{getUserName()}}</label>
+    <label>{{getUserMail()}}</label>
+  </section>
+  <img class="photo" [src]="getUserPhoto()" />
+</header>
+<router-outlet></router-outlet>

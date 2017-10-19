@@ -1,0 +1,17 @@
+section.lists {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  margin-left: 0px;
+}
+
+app-todo-list {
+  flex: 0 0 auto;
+  display: inline-flex;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+section.form-add-list{
+  margin-left: 5px;
+}

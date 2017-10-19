@@ -1,0 +1,16 @@
+<section>
+  <td class="rowNumber">
+  {{index+1}}
+  </td><td class="rowCheck">
+    <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
+  </td><td class="rowText">
+    <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
+        {{item.label}}
+      </label>
+      <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
+        <input #newLabel type="text" [value]="item.label"/>
+      </form>
+  </td><td class="rowDelete">
+    <button (click)="delete()">Delete</button>
+  </td>
+</section>
