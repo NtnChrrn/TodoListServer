@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {TodoListWithItems, TodoListService} from "../todo-list.service";
+import {FormsModule } from '@angular/forms';
 import {ColorPickerModule} from 'primeng/primeng';
 
 @Component({
