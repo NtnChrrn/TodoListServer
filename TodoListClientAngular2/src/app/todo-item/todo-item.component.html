@@ -2,7 +2,8 @@
   <td class="rowNumber">
   {{index+1}}
   </td><td class="rowCheck">
-    <input #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)" />
+
+  <p-triStateCheckbox [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"> </p-triStateCheckbox>
   </td><td class="rowText">
     <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
         {{item.label}}

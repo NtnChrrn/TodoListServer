@@ -13,6 +13,7 @@ import { HttpModule} from '@angular/http';
 
 import { RouterModule, Routes } from '@angular/router';
 import { ListsComponent } from './lists/lists.component';
+import {TriStateCheckboxModule} from 'primeng/primeng';
 
 const appRoutes: Routes = [
   {
@@ -40,8 +41,9 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule, HttpModule, FormsModule,
-    RouterModule.forRoot(appRoutes, {useHash: true} )
+    RouterModule.forRoot(appRoutes, {useHash: true} ), TriStateCheckboxModule
   ],
+  exports: [TriStateCheckboxModule],
   providers: [TodoListService],
   bootstrap: [AppComponent]
 })

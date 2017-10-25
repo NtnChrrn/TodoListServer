@@ -105,8 +105,8 @@ export class TodoListService {
   /*****************************************************************************************************************************************
    * Operations on lists *******************************************************************************************************************
    ****************************************************************************************************************************************/
-  SERVER_CREATE_NEW_LIST(name: string) {
-    const color=  generatorColor();
+  SERVER_CREATE_NEW_LIST(name: string):String {
+    const color =  generatorColor();
 
     const id = this.getLocalListId();
     this.ListUIs.push({
@@ -117,11 +117,12 @@ export class TodoListService {
       data: Object.assign({},{color})
     });
 
-    /*this.emit( {
+    this.emit( {
       type: "SERVER_CREATE_NEW_LIST",
       name: name,
       clientListId: id
-    } );*/
+    } );
+    return id;
   }
 
   SERVER_DELETE_LIST(ListID: ListID) {
@@ -184,7 +185,7 @@ export class TodoListService {
     this.itemsJSON = this.itemsJSON.filter( I => I.id !== ItemID );
   }
 
-  SERVER_UPDATE_ITEM_CHECK(ListID: ListID, ItemID: ItemID, checked: boolean) {
+  SERVER_UPDATE_ITEM_CHECK(ListID: ListID, ItemID: ItemID, checked: any) {
     const op: SERVER_UPDATE_ITEM_CHECK = {
       type: "SERVER_UPDATE_ITEM_CHECK",
       ListID: ListID,

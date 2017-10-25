@@ -38,7 +38,7 @@ export type PassportUser = {
 
 export type ItemJSON = {
   label: string,
-  checked: boolean,
+  checked: any,
   date: number,
   id: ItemID,
   clock: number,
