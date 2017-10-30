@@ -40,7 +40,7 @@ export class ListTodoItemComponent implements OnInit {
   }
   */
   createItem(label: string) {
-    this.todoListService.SERVER_CREATE_ITEM(this.list.id, label, false);
+    this.todoListService.SERVER_CREATE_ITEM(this.list.id, label, true);
   }
 
   getColor(): string {

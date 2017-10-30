@@ -40,7 +40,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.editingLabel = edit;
   }
 
-  check(checked: boolean) {
+  check(checked: any) {
     this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, checked);
   }
 
