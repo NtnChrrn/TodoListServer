@@ -5,7 +5,7 @@
       </h3>
     </a>
       <button (click)="delete()">Delete list</button>
-      <input type="color" [ngModel]="getColor()" (ngModelChange)="setColor($event)" />
-      
+
+    <p-colorPicker [(ngModel)]="color2" format="rgb"></p-colorPicker>
   </section>
 

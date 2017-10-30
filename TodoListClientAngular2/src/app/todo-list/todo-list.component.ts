@@ -1,17 +1,15 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {TodoListWithItems, TodoListService} from "../todo-list.service";
-import {FormsModule } from '@angular/forms';
-import {ColorPickerModule} from 'primeng/primeng';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
   @Input() list: TodoListWithItems;
   @Input() clock: number;
+  color2: string;
   constructor(private todoListService: TodoListService) {
 
   }

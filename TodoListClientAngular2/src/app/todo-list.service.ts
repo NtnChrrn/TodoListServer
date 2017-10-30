@@ -117,11 +117,11 @@ export class TodoListService {
       data: Object.assign({},{color})
     });
 
-    /*this.emit( {
+    this.emit( {
       type: "SERVER_CREATE_NEW_LIST",
       name: name,
       clientListId: id
-    } );*/
+    } );
   }
 
   SERVER_DELETE_LIST(ListID: ListID) {
