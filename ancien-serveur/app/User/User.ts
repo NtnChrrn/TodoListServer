@@ -84,34 +84,34 @@ export class User {
     apply(client: Client, msg: MESSAGE_FOR_SERVER) {
         switch (msg.type) {
             case "TODOLISTS_NEW_STATE":
-                console.log(">>>> INFO:TODOLISTS_NEW_STATE ");
+                console.error("TODOLISTS_NEW_STATE ");
                 return this.TODOLISTS_NEW_STATE(client, msg);
             case "SERVER_CREATE_NEW_LIST":
-                console.log(">>>> INFO:SERVER_CREATE_NEW_LIST ");
+                console.error("SERVER_CREATE_NEW_LIST ");
                 return this.SERVER_CREATE_NEW_LIST(client, msg);
             case "SERVER_DELETE_LIST":
-                console.log(">>>> INFO:SERVER_DELETE_LIST ");
+                console.error("SERVER_DELETE_LIST ");
                 return this.SERVER_DELETE_LIST(client, msg);
             case "SERVER_UPDATE_LIST_NAME":
-                console.log(">>>> INFO:SERVER_DELETE_LIST ");
+                console.error("SERVER_UPDATE_LIST_NAME ");
                 return this.SERVER_UPDATE_LIST_NAME(client, msg);
             case "SERVER_UPDATE_LIST_DATA":
-                console.log(">>>> INFO:SERVER_UPDATE_LIST_DATA ");
+                console.error("SERVER_UPDATE_LIST_DATA ");
                 return this.SERVER_UPDATE_LIST_DATA(client, msg);
             case "SERVER_CREATE_ITEM":
-                console.log(">>>> INFO:SERVER_CREATE_ITEM ");
+                console.error("SERVER_CREATE_ITEM ");
                 return this.SERVER_CREATE_ITEM(client, msg);
             case "SERVER_DELETE_ITEM":
-                console.log(">>>> INFO:SERVER_DELETE_ITEM ");
+                console.error("SERVER_DELETE_ITEM ");
                 return this.SERVER_DELETE_ITEM(client, msg);
             case "SERVER_UPDATE_ITEM_CHECK":
-                console.log(">>>> INFO:SERVER_DELETE_ITEM ");
+                console.error("SERVER_UPDATE_ITEM_CHECK ");
                 return this.SERVER_UPDATE_ITEM_CHECK(client, msg);
             case "SERVER_UPDATE_ITEM_LABEL":
-                console.log(">>>> INFO:SERVER_UPDATE_ITEM_LABEL ");
+                console.error("SERVER_UPDATE_ITEM_LABEL ");
                 return this.SERVER_UPDATE_ITEM_LABEL(client, msg);
             case "SERVER_UPDATE_ITEM_DATA":
-                console.log(">>>> INFO:SERVER_UPDATE_ITEM_LABEL ");
+                console.error("SERVER_UPDATE_ITEM_DATA ");
                 return this.SERVER_UPDATE_ITEM_DATA(client, msg);
             default:
                 console.error("UNKNOWN SERVER MESSAGE RECEIVED:\n", msg);
@@ -120,6 +120,7 @@ export class User {
     }
 
     private saveState(): this {
+        console.log("saveState ");
         this.history.push( {
             clockValue: ++this.clock,
             todoLists: this.todoLists
@@ -139,17 +140,19 @@ export class User {
     }
 
     private sendStateToClients(...clients: Client[]): this {
+        console.log("sendStateToClients");
         clients = clients.length ? clients : this.clients;
         const msg: TODOLISTS_NEW_STATE = {
             type: "TODOLISTS_NEW_STATE",
             items: this.items.map( I => I.toJSON() ).toArray(),
             lists: this.todoLists.map( L => L.toJSON() ).toArray()
         };
-        // clients.forEach( c => c.unregisterAllMappings() );
+        clients.forEach( c => c.unregisterAllMappings() );
         this.sendToClients(clients, msg);
         return this;
     }
     private updateTodoList(L: ListID | TodoList, nextTdl: TodoList) {
+        console.log("updateTodoList");
         const tdl: TodoList = typeof L === "string" ? this.getList(L) : L;
         this.saveState();
         this.items = List(this.items.filterNot(item => tdl.contains(item) )); // Remove items from tdl
@@ -162,17 +165,21 @@ export class User {
     }
     private SERVER_CREATE_NEW_LIST(client: Client, msg: SERVER_CREATE_NEW_LIST) {
         this.saveState();
-        const tdl = new TodoList(msg.name, List<Item>(), getNextIdList(), 0, msg.data);
+        console.log("SERV");
+        const tdl = new TodoList(msg.name, List<Item>(), getNextIdList(), 0, msg.color, {});
         this.todoLists = this.todoLists.push( tdl );
         client.registerMapping(msg.clientListId, tdl.getId());
+
+        client.send("SERVER <<User.ts>>SERVER_CREATE_NEW_LIST: Couleur affectée à "+tdl.getId()+" : "+tdl.getColor());
+        console.log("SERVER <<User.ts>>SERVER_CREATE_NEW_LIST: Couleur affectée à ",tdl.getId()," : ",tdl.getColor());
         this.sendStateToClients();
     }
 
     private SERVER_UPDATE_LIST_DATA(client: Client, msg: SERVER_UPDATE_LIST_DATA) {
-        const tdl: TodoList = this.getList( client.getId(msg.ListID) );
+        const tdl: TodoList = this.getList(msg.ListID);
         if (tdl) {
             this.saveState();
-            this.updateTodoList(tdl.getId(), tdl.setData( Object.assign({}, tdl.getData(), msg.data) ));
+            this.updateTodoList(tdl.getId(), tdl.setData(msg.data));
             this.sendStateToClients();
         }
     }
@@ -199,7 +206,7 @@ export class User {
             if (list) { // Update existing list
                 return list.update(listJSON.name, itemsList);
             } else { //
-                const newList = new TodoList(listJSON.name, List(itemsList), getNextIdList(), 0, listJSON.data);
+                const newList = new TodoList(listJSON.name, List(itemsList), getNextIdList(), 0, listJSON.color, listJSON.data);
                 // client.registerMapping(listJSON.id, newList.getId());
                 return newList;
             }
@@ -218,7 +225,8 @@ export class User {
     }
 
     private SERVER_UPDATE_LIST_NAME(client: Client, msg: SERVER_UPDATE_LIST_NAME) {
-        const tdl: TodoList = this.getList( client.getId(msg.ListID) );
+        const ListID: ListID = client.getId(msg.ListID);
+        const tdl: TodoList = this.getList(ListID);
         const newTdl = tdl.setName( msg.name );
         this.updateTodoList(tdl, newTdl);
         this.sendStateToClients();
@@ -227,7 +235,7 @@ export class User {
     private SERVER_CREATE_ITEM(client: Client, msg: SERVER_CREATE_ITEM) {
         const ListID: ListID = client.getId(msg.ListID);
         const tdl: TodoList = this.getList(ListID);
-        const item = new Item(msg.label, msg.checked, Date.now(), getNextIdItem(), 0, msg.data);
+        const item = new Item(msg.label, false, Date.now(), getNextIdItem(), 0, {});
         const newTdl = tdl.push( item );
         client.registerMapping(msg.clientItemId, item.getId());
         this.updateTodoList(tdl, newTdl);
@@ -235,12 +243,10 @@ export class User {
     }
 
     private SERVER_UPDATE_ITEM_DATA(client: Client, msg: SERVER_UPDATE_ITEM_DATA) {
-        const ListID: ListID = client.getId(msg.ListID);
-        const ItemID: ItemID = client.getId(msg.ItemID);
-        const tdl: TodoList = this.getList(ListID);
-        if (tdl && tdl.contains(ItemID)) {
+        const tdl: TodoList = this.getList(msg.ListID);
+        if (tdl && tdl.contains(msg.ItemID)) {
             this.saveState();
-            this.updateTodoList(tdl.getId(), tdl.setItemData(ItemID, Object.assign(tdl.getItemData(ItemID), msg.data) ));
+            this.updateTodoList(tdl.getId(), tdl.setItemData(msg.ItemID, msg.data));
             this.sendStateToClients();
         }
     }

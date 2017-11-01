@@ -105,23 +105,26 @@ export class TodoListService {
   /*****************************************************************************************************************************************
    * Operations on lists *******************************************************************************************************************
    ****************************************************************************************************************************************/
-  SERVER_CREATE_NEW_LIST(name: string):String {
+  SERVER_CREATE_NEW_LIST(name: string, data: Object = {}):String {
     const color =  generatorColor();
-
+    data = Object.assign(data, color);
     const id = this.getLocalListId();
     this.ListUIs.push({
       name: name,
       items: [],
       id: id,
       clock: -1,
-      data: Object.assign({},{color})
+      data: data
     });
-
+    console.log("service : ListUIs");
+    console.log(this.ListUIs);
     this.emit( {
       type: "SERVER_CREATE_NEW_LIST",
       name: name,
+      data: data,
       clientListId: id
     } );
+    console.log("<<Service>>SERVER_CREATE_NEW_LIST: Couleur affectée à "+id+" : "+color);
     return id;
   }
 
@@ -155,12 +158,14 @@ export class TodoListService {
   /*****************************************************************************************************************************************
    * Operations on items *******************************************************************************************************************
    ****************************************************************************************************************************************/
-  SERVER_CREATE_ITEM(ListID: ListID, label: string, checked: boolean = false) {
+  SERVER_CREATE_ITEM(ListID: ListID, label: string, checked: boolean = false, data: Object = {}) {
     const id = this.genId.next().value;
     this.emit({
       type: "SERVER_CREATE_ITEM",
       ListID: ListID,
       label: label,
+      checked: checked,
+      data: data,
       clientItemId: id
     });
     this.ListUIs.find( L => L.id === ListID ).items.push({

@@ -9,7 +9,6 @@ import {TodoListWithItems, TodoListService} from "../todo-list.service";
 export class TodoListComponent implements OnInit {
   @Input() list: TodoListWithItems;
   @Input() clock: number;
-  color2: string;
   constructor(private todoListService: TodoListService) {
 
   }
@@ -22,14 +21,15 @@ export class TodoListComponent implements OnInit {
   }
 
   getColor(): string {
-    return this.list.data["color"] ? this.list.data["color"] : "#FFFFFF";
+    console.log("<<to-list.component.ts>>getColor: Couleur affectée à " + this.list.id + " : " + this.list.data['color']);
+    return this.list.data['color'] ? this.list.data['color'] : "#FFFFFF";
   }
 
   setColor(color: string) {
     console.log("setColor", color);
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
-      Object.assign({}, this.list.data, {color})
+      this.list.data
     );
   }
 }

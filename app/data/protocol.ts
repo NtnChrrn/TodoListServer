@@ -2,12 +2,13 @@ export type ListID = string;
 export type ItemID = string;
 
 // Messages processable by the server
-export type SERVER_CREATE_NEW_LIST = { type: "SERVER_CREATE_NEW_LIST", name: string, clientListId: ListID };
+export type SERVER_CREATE_NEW_LIST = { type: "SERVER_CREATE_NEW_LIST", name: string, data: Object, clientListId: ListID };
 export type SERVER_DELETE_LIST = { type: "SERVER_DELETE_LIST", ListID: ListID };
 export type SERVER_UPDATE_LIST_NAME = { type: "SERVER_UPDATE_LIST_NAME", ListID: ListID, name: string };
 export type SERVER_UPDATE_LIST_DATA = { type: "SERVER_UPDATE_LIST_DATA", ListID: ListID, data: Object };
 
-export type SERVER_CREATE_ITEM = { type: "SERVER_CREATE_ITEM", ListID: ListID, label: string, clientItemId: ItemID };
+export type SERVER_CREATE_ITEM = {  type: "SERVER_CREATE_ITEM", ListID: ListID,
+                                    label: string, checked: boolean, data: Object, clientItemId: ItemID };
 export type SERVER_DELETE_ITEM = { type: "SERVER_DELETE_ITEM", ListID: ListID, ItemID: ItemID };
 export type SERVER_UPDATE_ITEM_CHECK = { type: "SERVER_UPDATE_ITEM_CHECK", ListID: ListID, ItemID: ItemID, check: boolean };
 export type SERVER_UPDATE_ITEM_LABEL = { type: "SERVER_UPDATE_ITEM_LABEL", ListID: ListID, ItemID: ItemID, label: string };
