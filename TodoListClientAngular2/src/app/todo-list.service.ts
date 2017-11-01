@@ -107,7 +107,7 @@ export class TodoListService {
    ****************************************************************************************************************************************/
   SERVER_CREATE_NEW_LIST(name: string, data: Object = {}):String {
     const color =  generatorColor();
-    data = Object.assign(data, color);
+    data = Object.assign(data, {color : color});
     const id = this.getLocalListId();
     this.ListUIs.push({
       name: name,

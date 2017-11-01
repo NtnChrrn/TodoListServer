@@ -1,11 +1,18 @@
   <section class="root" [style.backgroundColor]="getColor()">
+    <span class="group-button">
+      <p-colorPicker [ngModel]="getColor()"
+                     (ngModelChange)="setColor($event)"
+                     title="Changer la couleur de la liste"
+                     styleClass="width:200px;"></p-colorPicker>
+      <i class="fa fa-times fa-lg hvr" (click)="delete()" title="Supprimer la liste"></i>
+    </span>
+
     <a [routerLink]="['/lists-detail', list.id]">
+      <br /><br />
       <h3>
         {{list.name}}
       </h3>
     </a>
-      <button (click)="delete()">Delete list</button>
 
-    <p-colorPicker (ngModel)="getColor()" format="rgb"></p-colorPicker>
   </section>
 
