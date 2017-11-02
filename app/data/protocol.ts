@@ -10,6 +10,7 @@ export type SERVER_UPDATE_LIST_DATA = { type: "SERVER_UPDATE_LIST_DATA", ListID:
 export type SERVER_CREATE_ITEM = {  type: "SERVER_CREATE_ITEM", ListID: ListID,
                                     label: string, checked: boolean, data: Object, clientItemId: ItemID };
 export type SERVER_DELETE_ITEM = { type: "SERVER_DELETE_ITEM", ListID: ListID, ItemID: ItemID };
+export type SERVER_DELETE_ALL_ITEMS = { type: "SERVER_DELETE_ALL_ITEMS", ListID: ListID };
 export type SERVER_UPDATE_ITEM_CHECK = { type: "SERVER_UPDATE_ITEM_CHECK", ListID: ListID, ItemID: ItemID, check: boolean };
 export type SERVER_UPDATE_ITEM_LABEL = { type: "SERVER_UPDATE_ITEM_LABEL", ListID: ListID, ItemID: ItemID, label: string };
 export type SERVER_UPDATE_ITEM_DATA = { type: "SERVER_UPDATE_ITEM_DATA", ListID: ListID, ItemID: ItemID, data: Object };
@@ -20,7 +21,7 @@ export type TODOLISTS_NEW_STATE = {
     items: ItemJSON[]
 };
 export type MESSAGE_FOR_SERVER = SERVER_CREATE_NEW_LIST | SERVER_DELETE_LIST | SERVER_UPDATE_LIST_NAME |
-    SERVER_CREATE_ITEM | SERVER_DELETE_ITEM | SERVER_UPDATE_ITEM_CHECK | SERVER_UPDATE_ITEM_LABEL |
+    SERVER_CREATE_ITEM | SERVER_DELETE_ITEM | SERVER_DELETE_ALL_ITEMS | SERVER_UPDATE_ITEM_CHECK | SERVER_UPDATE_ITEM_LABEL |
     SERVER_UPDATE_LIST_DATA | SERVER_UPDATE_ITEM_DATA |
     TODOLISTS_NEW_STATE;
 

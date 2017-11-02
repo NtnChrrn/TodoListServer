@@ -6,13 +6,11 @@
                      styleClass="width:200px;"></p-colorPicker>
       <i class="fa fa-times fa-lg hvr" (click)="delete()" title="Supprimer la liste"></i>
     </span>
-
+    <br /><br />
     <a [routerLink]="['/lists-detail', list.id]">
-      <br /><br />
       <h3>
         {{list.name}}
       </h3>
     </a>
-
   </section>
 

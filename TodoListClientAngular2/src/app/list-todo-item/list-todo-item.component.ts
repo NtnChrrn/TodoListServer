@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {TodoListWithItems, TodoListService} from "../todo-list.service";
 import { ActivatedRoute } from '@angular/router';
+import {ButtonModule} from 'primeng/primeng';
 
 @Component({
   selector: 'app-list-todo-item',
@@ -11,9 +12,10 @@ import { ActivatedRoute } from '@angular/router';
 export class ListTodoItemComponent implements OnInit {
   //@Input() list: TodoListWithItems;
   //@Input() clock: number;
-  private idList : string;
-  private list : TodoListWithItems;
-  private sub: any;
+  private idList  : string;
+  private list    : TodoListWithItems;
+  private sub     : any;
+  private edit    : boolean = false;
 
   constructor(private todoListService: TodoListService, private route: ActivatedRoute) { }
 
@@ -26,33 +28,31 @@ export class ListTodoItemComponent implements OnInit {
   }
 
   getName(){
-    //console.log("GET name():"+ this.list.name);
     return this.list.name;
   }
+
   getItems(){
      return this.list.items;
   }
-  /*getItem(){
-    return this.todoListService.getList(this.idList);
-  }*/
-  /*delete() {
-    this.todoListService.SERVER_DELETE_LIST(this.list.id);
+
+  getEdit(){
+    return this.edit;
   }
-  */
+
+  setEdit(){
+    console.log("<<list-todo>> edit = " + !this.edit);
+    this.edit = !this.edit;
+  }
+
   createItem(label: string) {
     this.todoListService.SERVER_CREATE_ITEM(this.list.id, label, true);
   }
 
   getColor(): string {
-    console.log(this.list);
     return this.list.data["color"] ? this.list.data["color"] : "#FFFFFF";
   }
 
-  /*setColor(color: string) {
-    console.log("setColor", color);
-    this.todoListService.SERVER_UPDATE_LIST_DATA(
-      this.list.id,
-      Object.assign({}, this.list.data, {color})
-    );
-  }*/
+  deleteAll() {
+    this.todoListService.SERVER_DELETE_ALL_ITEMS(this.list.id);
+  }
 }

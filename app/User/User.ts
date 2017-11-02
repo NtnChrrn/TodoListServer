@@ -1,7 +1,7 @@
 import {
     ListID, MESSAGE_FOR_CLIENT, MESSAGE_FOR_SERVER,
     SERVER_CREATE_NEW_LIST, SERVER_DELETE_LIST, SERVER_UPDATE_LIST_NAME, SERVER_CREATE_ITEM,
-    SERVER_DELETE_ITEM, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL, ItemID,
+    SERVER_DELETE_ITEM, SERVER_DELETE_ALL_ITEMS, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL, ItemID,
     PassportUser, TODOLISTS_NEW_STATE, ItemJSON, SERVER_UPDATE_LIST_DATA, SERVER_UPDATE_ITEM_DATA
 } from "@data/protocol";
 import {Item, TodoList} from "@data/todoListTypes";
@@ -104,6 +104,9 @@ export class User {
             case "SERVER_DELETE_ITEM":
                 console.log(">>>> INFO:SERVER_DELETE_ITEM ");
                 return this.SERVER_DELETE_ITEM(client, msg);
+            case "SERVER_DELETE_ALL_ITEMS":
+                console.log(">>>> INFO:SERVER_DELETE_ALL_ITEMS ");
+                return this.SERVER_DELETE_ALL_ITEMS(client, msg);
             case "SERVER_UPDATE_ITEM_CHECK":
                 console.log(">>>> INFO:SERVER_DELETE_ITEM ");
                 return this.SERVER_UPDATE_ITEM_CHECK(client, msg);
@@ -254,6 +257,14 @@ export class User {
             this.updateTodoList(tdl, newTdl);
             this.sendStateToClients();
         }
+    }
+
+    private SERVER_DELETE_ALL_ITEMS(client: Client, msg: SERVER_DELETE_ALL_ITEMS) {
+        const ListID: ListID = client.getId(msg.ListID);
+        const tdl: TodoList = this.getList(ListID);
+        const newTdl = tdl.deleteAll();
+        this.updateTodoList(tdl, newTdl);
+        this.sendStateToClients();
     }
 
     private SERVER_UPDATE_ITEM_CHECK(client: Client, msg: SERVER_UPDATE_ITEM_CHECK) {

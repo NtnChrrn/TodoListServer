@@ -5,7 +5,8 @@ import {
   ItemID, ListID,
   MESSAGE_FOR_SERVER, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL,
   MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE,
-  TodoListJSON, ItemJSON, TodoListWithItems, SERVER_DELETE_ITEM, SERVER_DELETE_LIST, SERVER_UPDATE_LIST_DATA,
+  TodoListJSON, ItemJSON, TodoListWithItems, SERVER_DELETE_ITEM, SERVER_DELETE_ALL_ITEMS,
+  SERVER_DELETE_LIST, SERVER_UPDATE_LIST_DATA,
 } from "../data/protocol";
 export {
   ItemID, ListID,
@@ -13,12 +14,12 @@ export {
   MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE,
   TodoListJSON, ItemJSON, TodoListWithItems,
 } from "../data/protocol";
-import {Http, Response} from "@angular/http";
-import * as io from "socket.io-client";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {PartialObserver} from "rxjs/Observer";
-import {Subscription} from "rxjs/Subscription";
-import {Observable} from "rxjs/Observable";
+import {Http, Response}   from "@angular/http";
+import * as io            from "socket.io-client";
+import {BehaviorSubject}  from "rxjs/BehaviorSubject";
+import {PartialObserver}  from "rxjs/Observer";
+import {Subscription}     from "rxjs/Subscription";
+import {Observable}       from "rxjs/Observable";
 
 let nbUpdate = 0;
 function* generatorPrefix(prefix: string) {
@@ -188,6 +189,18 @@ export class TodoListService {
     const list = this.getList(ListID);
     list.items = list.items.filter( I => I.id !== ItemID );
     this.itemsJSON = this.itemsJSON.filter( I => I.id !== ItemID );
+  }
+
+  SERVER_DELETE_ALL_ITEMS(ListID: ListID) {
+    const op: SERVER_DELETE_ALL_ITEMS = {
+      type: "SERVER_DELETE_ALL_ITEMS",
+      ListID: ListID
+    };
+    console.log("<<service.ts>>SERVER_DELETE_ALL_ITEMS");
+    this.emit(op);
+    const list = this.getList(ListID);
+    list.items = [];
+    this.itemsJSON = [];
   }
 
   SERVER_UPDATE_ITEM_CHECK(ListID: ListID, ItemID: ItemID, checked: any) {

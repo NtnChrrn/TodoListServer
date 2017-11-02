@@ -9,19 +9,18 @@ import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoItemComponent implements OnInit, OnChanges {
-  @Input() item: ItemJSON;
-  @Input() listId: ListID;
-  @Input() clock: number;
-  @Input() index: number;
+  @Input() item:    ItemJSON;
+  @Input() listId:  ListID;
+  @Input() clock:   number;
+  @Input() index:   number;
+  @Input() edit:    boolean;
 
   private editingLabel = false;
 
   constructor(private todoListService: TodoListService) { }
 
-  ngOnInit() {
-  }
-  ngOnChanges(changes: SimpleChanges) {
-  }
+  ngOnInit() { }
+  ngOnChanges(changes: SimpleChanges) { }
 
   setLabel(label: string) {
     if (label === "") {
@@ -38,6 +37,15 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   editLabel(edit: boolean) {
     this.editingLabel = edit;
+  }
+
+  editDeleteButton() {
+    console.log("<<todo-item>> edit = " + this.edit);
+    let styles = {
+      'display': this.edit ? 'none' : 'block'
+    }
+    console.log(styles);
+    return styles;
   }
 
   check(checked: any) {

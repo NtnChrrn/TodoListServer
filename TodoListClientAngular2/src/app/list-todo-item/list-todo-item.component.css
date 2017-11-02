@@ -1,0 +1,43 @@
+section{
+  height:100%;
+}
+button{
+  color:white;
+}
+
+#btn-grp{
+  float:right;
+  margin:20px 10% 20px 0;
+  height:auto;
+}
+
+#list-todo-item{
+  padding: 0px 10px 5px 10px;
+}
+h3{
+  margin-top:15px;
+  padding-top:15px;
+}
+/* ================ tableItemDetails ========= */
+#tableItemDetails{
+  width: 80%;
+  margin: auto;
+}
+.thTableItemDetails {
+  background-color: #4CAF50;
+  padding:5px 0px 5px 5px;
+}
+
+.trTableItemDetails{
+  width: 20px;
+}
+.rowCheck{
+  width: 20px;
+}
+
+.rowText{
+  width: 50%;
+}
+.rowDelete{
+  width: 30px;
+}

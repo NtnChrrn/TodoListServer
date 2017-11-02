@@ -8,11 +8,14 @@ html{
 }
 
 body{
-  color: #fff;
   padding-top: 1.2%;
+  background-color: #ff9c08;
 }
 a{
   text-decoration: none;
+  color: black;
+}
+a:hover{
   color: black;
 }
 #app-root{
@@ -21,27 +24,4 @@ a{
 #svg_beer{
   text-align:center;
   padding: 3em 0;
-}
-  /* ================ tableItemDetails ========= */
-#tableItemDetails{
-  width: 80%;
-  margin: auto;
-}
- .thTableItemDetails {
-   background-color: #4CAF50;
-   color: #ffffff;
- }
-
-.trTableItemDetails{
-  width: 20px;
-}
-.rowCheck{
-  width: 20px;
-}
-
-.rowText{
-  width: 50%;
-}
-.rowDelete{
-  width: 30px;
 }

@@ -12,6 +12,6 @@
         <input #newLabel type="text" [value]="item.label"/>
       </form>
   </td><td class="rowDelete">
-    <button (click)="delete()">Delete</button>
+    <i class="fa fa-times fa-lg hvr" (click)="delete()" title="Supprimer la tâche" [ngStyle]="editDeleteButton()"></i>
   </td>
 </section>

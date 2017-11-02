@@ -1,4 +1,4 @@
-<section class="root" [style.backgroundColor]="getColor()">
+<section id="list-todo-item" [style.backgroundColor]="getColor()">
   <h3>
     {{getName()}}
   </h3>
@@ -16,12 +16,17 @@
     <tbody>
       <tr *ngFor="let item of getItems(); let i = index" class="trTableItemDetails">
           <app-todo-item
-                       [clock]="item.clock"
-                       [item]="item"
-                       [listId]="list.id"
-                       [index]="i">
+                       [clock]  = "item.clock"
+                       [item]   = "item"
+                       [listId] = "list.id"
+                       [index]  = "i"
+                       [edit]   = "getEdit()">
           </app-todo-item>
       </tr>
     </tbody>
   </table>
+  <div id="btn-grp">
+    <button class="btn btn-warning" (click)="setEdit()"><i class="fa fa-wrench fa-lg"></i> Edit</button>
+    <button class="btn btn-danger " (click)="deleteAll()"><i class="fa fa-trash-o fa-lg"></i> Delete all</button>
+  </div>
 </section>
