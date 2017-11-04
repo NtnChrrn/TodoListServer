@@ -5,7 +5,8 @@
   <table id="tableItemDetails">
     <th class="thTableItemDetails">
      <tr>
-       <td>
+       <td class="columnDelete"></td>
+       <td class="columnAdd" width="100%">
         <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
           <!--<label>Add a new item:</label>-->
           <input type="text" #newItemLabel placeholder="Entrée..."/>
@@ -20,7 +21,8 @@
                        [item]   = "item"
                        [listId] = "list.id"
                        [index]  = "i"
-                       [edit]   = "getEdit()">
+                       [edit]   = "getEdit()"
+                       [color]="getColor()">
           </app-todo-item>
       </tr>
     </tbody>

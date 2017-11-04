@@ -5,9 +5,11 @@ import { NgModule }                 from '@angular/core';
 import { CommonModule }             from '@angular/common';
 import { HttpModule}                from '@angular/http';
 import { RouterModule, Routes }     from '@angular/router';
-import { ColorPickerModule}         from 'primeng/primeng';
-import { MenuModule, MenuItem}      from 'primeng/primeng';
-import {TriStateCheckboxModule}     from 'primeng/primeng';
+import { MenuModule,
+         MenuItem,
+         ColorPickerModule,
+         TriStateCheckboxModule,
+         CalendarModule}            from 'primeng/primeng';
 import { AppComponent }             from './app.component';
 import { TodoListComponent }        from './todo-list/todo-list.component';
 import { TodoItemComponent }        from './todo-item/todo-item.component';
@@ -40,7 +42,7 @@ const appRoutes: Routes = [
     ListsComponent
   ],
   imports: [
-    BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule,ColorPickerModule, TriStateCheckboxModule,
+    BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule,ColorPickerModule, CalendarModule, TriStateCheckboxModule,
     RouterModule.forRoot(appRoutes, {useHash: true} )
   ],
   exports: [],

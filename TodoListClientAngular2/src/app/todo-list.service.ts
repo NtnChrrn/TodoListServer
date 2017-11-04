@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/toPromise';
 import {
   ItemID, ListID,
-  MESSAGE_FOR_SERVER, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL,
+  MESSAGE_FOR_SERVER, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL, SERVER_UPDATE_ITEM_DATA,
   MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE,
   TodoListJSON, ItemJSON, TodoListWithItems, SERVER_DELETE_ITEM, SERVER_DELETE_ALL_ITEMS,
   SERVER_DELETE_LIST, SERVER_UPDATE_LIST_DATA,
@@ -125,7 +125,6 @@ export class TodoListService {
       data: data,
       clientListId: id
     } );
-    console.log("<<Service>>SERVER_CREATE_NEW_LIST: Couleur affectée à "+id+" : "+color);
     return id;
   }
 
@@ -197,11 +196,24 @@ export class TodoListService {
       type: "SERVER_DELETE_ALL_ITEMS",
       ListID: ListID
     };
-    console.log("<<service.ts>>SERVER_DELETE_ALL_ITEMS");
     this.emit(op);
     const list = this.getList(ListID);
     list.items = [];
     this.itemsJSON = [];
+  }
+
+  SERVER_UPDATE_ITEM_DATA(ListID: ListID, ItemID: ItemID, data: Object) {
+    const op: SERVER_UPDATE_ITEM_DATA = {
+      type: "SERVER_UPDATE_ITEM_DATA",
+      ListID: ListID,
+      ItemID: ItemID,
+      data: data
+    };
+    this.emit(op);
+    const prevData = this.getItem(ListID, ItemID).data;
+    const newData  = Object.assign(prevData, data);
+    console.log("SERVER_UPDATE_ITEM_DATA", ListID, ItemID, data, "\n", "\t", prevData, "=>", newData);
+    this.localUpdateItem(ListID, ItemID, {data: newData});
   }
 
   SERVER_UPDATE_ITEM_CHECK(ListID: ListID, ItemID: ItemID, checked: any) {
@@ -297,7 +309,7 @@ export class TodoListService {
     return this.getList(ListID).items.find( I => I.id === ItemID );
   }
 
-  private localUpdateItem(ListID: ListID, ItemID: ItemID, update: {label?: string, checked?: any}) {
+  private localUpdateItem(ListID: ListID, ItemID: ItemID, update: {label?: string, checked?: any, data?: Object}) {
     const list = this.getList(ListID);
     list.items = list.items.map( I => I.id !== ItemID ? I : Object.assign(I, update) );
   }

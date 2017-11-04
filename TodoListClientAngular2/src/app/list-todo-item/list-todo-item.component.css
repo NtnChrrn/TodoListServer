@@ -24,20 +24,14 @@ h3{
   margin: auto;
 }
 .thTableItemDetails {
+
+}
+.columnAdd{
   background-color: #4CAF50;
+  border: solid 1px black;
+  border-bottom: solid 2px black;
   padding:5px 0px 5px 5px;
 }
-
 .trTableItemDetails{
-  width: 20px;
-}
-.rowCheck{
-  width: 20px;
-}
-
-.rowText{
-  width: 50%;
-}
-.rowDelete{
-  width: 30px;
+  vertical-align: middle;
 }

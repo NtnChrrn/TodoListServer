@@ -25,3 +25,14 @@ a:hover{
   text-align:center;
   padding: 3em 0;
 }
+
+
+.columnDelete{
+  width: 25px;
+  border-right: 1px solid black;
+}
+
+
+.columnDate p-calendar input{
+  width: 124px;
+}

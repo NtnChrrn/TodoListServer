@@ -2,8 +2,8 @@ export type ListID = string;
 export type ItemID = string;
 
 // Messages processable by the server
-export type SERVER_CREATE_NEW_LIST = { type: "SERVER_CREATE_NEW_LIST", name: string, data: Object, clientListId: ListID };
-export type SERVER_DELETE_LIST = { type: "SERVER_DELETE_LIST", ListID: ListID };
+export type SERVER_CREATE_NEW_LIST =  { type: "SERVER_CREATE_NEW_LIST", name: string, data: Object, clientListId: ListID };
+export type SERVER_DELETE_LIST =      { type: "SERVER_DELETE_LIST", ListID: ListID };
 export type SERVER_UPDATE_LIST_NAME = { type: "SERVER_UPDATE_LIST_NAME", ListID: ListID, name: string };
 export type SERVER_UPDATE_LIST_DATA = { type: "SERVER_UPDATE_LIST_DATA", ListID: ListID, data: Object };
 
@@ -23,8 +23,7 @@ export type TODOLISTS_NEW_STATE = {
 };
 export type MESSAGE_FOR_SERVER = SERVER_CREATE_NEW_LIST | SERVER_DELETE_LIST | SERVER_UPDATE_LIST_NAME |
   SERVER_CREATE_ITEM | SERVER_DELETE_ITEM | SERVER_DELETE_ALL_ITEMS | SERVER_UPDATE_ITEM_CHECK | SERVER_UPDATE_ITEM_LABEL |
-  SERVER_UPDATE_LIST_DATA | SERVER_UPDATE_ITEM_DATA |
-  TODOLISTS_NEW_STATE;
+  SERVER_UPDATE_LIST_DATA | SERVER_UPDATE_ITEM_DATA | TODOLISTS_NEW_STATE;
 
 // Messages processable by the clients
 export type MESSAGE_FOR_CLIENT = TODOLISTS_NEW_STATE;
