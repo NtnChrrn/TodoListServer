@@ -1,19 +1,4 @@
-<<<<<<< HEAD
-<section>
-  <td class="rowNumber">
-  {{index+1}}
-  </td><td class="rowCheck">
-
-  <p-triStateCheckbox [ngModel]=item.checked (ngModelChange)="check(item.checked)"> </p-triStateCheckbox>
-  </td><td class="rowText">
-    <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
-        {{item.label}}
-      </label>
-      <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
-        <input #newLabel type="text" [value]="item.label"/>
-      </form>
-  </td>
-  <section >
+<section >
   <td class="columnDelete" >
           <span class="fa-stack fa-lg hvr"
                 style="font-size:10px;color:red;"
@@ -28,7 +13,7 @@
           {{index+1}}
   </td>
   <td class="columnCheck" [ngStyle]="colorLigne()">
-          <p-triStateCheckbox [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"> </p-triStateCheckbox>
+          <p-triStateCheckbox [ngModel]="item.checked" (ngModelChange)="check(item.checked)"> </p-triStateCheckbox>
   </td>
   <td class="columnText" [ngStyle]="colorLigne()">
           <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
