@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChan
 import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
 
 
+
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',

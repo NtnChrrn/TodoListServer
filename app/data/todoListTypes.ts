@@ -4,7 +4,7 @@ import {ListID, ItemID, ItemJSON, TodoListJSON} from "./protocol";
 export class Item {
     private lastJSON: ItemJSON;
     constructor( private label: string,
-                 private checked: boolean,
+                 private checked: any,
                  private date: number,
                  private id: ItemID,
                  private clock: number,
@@ -24,7 +24,7 @@ export class Item {
         return this.label;
     }
 
-    getChecked(): boolean {
+    getChecked(): any {
         return this.checked;
     }
 
@@ -40,7 +40,7 @@ export class Item {
         return new Item(str, this.getChecked(), this.getDate(), this.id, ++this.clock, this.getData());
     }
 
-    setChecked(checked: boolean): Item {
+    setChecked(checked: any): Item {
         return new Item(this.getLabel(), checked, this.getDate(), this.id, ++this.clock, this.getData());
     }
 
@@ -189,7 +189,7 @@ export class TodoList {
         }
     }
 
-    setItemChecked(idItem: ItemID, checked: boolean): TodoList {
+    setItemChecked(idItem: ItemID, checked: any): TodoList {
         const item = this.items.find(item => item.hasId(idItem));
         if (item) {
             const newItem = item.setChecked(checked);

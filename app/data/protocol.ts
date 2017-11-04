@@ -8,10 +8,10 @@ export type SERVER_UPDATE_LIST_NAME = { type: "SERVER_UPDATE_LIST_NAME", ListID:
 export type SERVER_UPDATE_LIST_DATA = { type: "SERVER_UPDATE_LIST_DATA", ListID: ListID, data: Object };
 
 export type SERVER_CREATE_ITEM = {  type: "SERVER_CREATE_ITEM", ListID: ListID,
-                                    label: string, checked: boolean, data: Object, clientItemId: ItemID };
+                                    label: string, checked: any, data: Object, clientItemId: ItemID };
 export type SERVER_DELETE_ITEM = { type: "SERVER_DELETE_ITEM", ListID: ListID, ItemID: ItemID };
 export type SERVER_DELETE_ALL_ITEMS = { type: "SERVER_DELETE_ALL_ITEMS", ListID: ListID };
-export type SERVER_UPDATE_ITEM_CHECK = { type: "SERVER_UPDATE_ITEM_CHECK", ListID: ListID, ItemID: ItemID, check: boolean };
+export type SERVER_UPDATE_ITEM_CHECK = { type: "SERVER_UPDATE_ITEM_CHECK", ListID: ListID, ItemID: ItemID, check: any };
 export type SERVER_UPDATE_ITEM_LABEL = { type: "SERVER_UPDATE_ITEM_LABEL", ListID: ListID, ItemID: ItemID, label: string };
 export type SERVER_UPDATE_ITEM_DATA = { type: "SERVER_UPDATE_ITEM_DATA", ListID: ListID, ItemID: ItemID, data: Object };
 
@@ -40,7 +40,7 @@ export type PassportUser = {
 
 export type ItemJSON = {
     label: string,
-    checked: boolean,
+    checked: any,
     date: number,
     id: ItemID,
     clock: number,

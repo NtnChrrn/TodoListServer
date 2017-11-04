@@ -100,6 +100,7 @@ export class User {
                 return this.SERVER_UPDATE_LIST_DATA(client, msg);
             case "SERVER_CREATE_ITEM":
                 console.log(">>>> INFO:SERVER_CREATE_ITEM ");
+                console.log("le message est " + msg);
                 return this.SERVER_CREATE_ITEM(client, msg);
             case "SERVER_DELETE_ITEM":
                 console.log(">>>> INFO:SERVER_DELETE_ITEM ");

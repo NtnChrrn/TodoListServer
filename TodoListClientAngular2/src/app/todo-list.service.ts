@@ -159,7 +159,8 @@ export class TodoListService {
   /*****************************************************************************************************************************************
    * Operations on items *******************************************************************************************************************
    ****************************************************************************************************************************************/
-  SERVER_CREATE_ITEM(ListID: ListID, label: string, checked: boolean = false, data: Object = {}) {
+  SERVER_CREATE_ITEM(ListID: ListID, label: string, checked: any = '', data: Object = {}) {
+    console.log(checked);
     const id = this.genId.next().value;
     this.emit({
       type: "SERVER_CREATE_ITEM",
@@ -173,7 +174,7 @@ export class TodoListService {
       label: label,
       id: id,
       date: Date.now(),
-      checked: false,
+      checked: '',
       clock: -1,
       data: {}
     });
@@ -296,7 +297,7 @@ export class TodoListService {
     return this.getList(ListID).items.find( I => I.id === ItemID );
   }
 
-  private localUpdateItem(ListID: ListID, ItemID: ItemID, update: {label?: string, checked?: boolean}) {
+  private localUpdateItem(ListID: ListID, ItemID: ItemID, update: {label?: string, checked?: any}) {
     const list = this.getList(ListID);
     list.items = list.items.map( I => I.id !== ItemID ? I : Object.assign(I, update) );
   }
