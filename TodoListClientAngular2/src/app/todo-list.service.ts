@@ -158,7 +158,7 @@ export class TodoListService {
   /*****************************************************************************************************************************************
    * Operations on items *******************************************************************************************************************
    ****************************************************************************************************************************************/
-  SERVER_CREATE_ITEM(ListID: ListID, label: string, checked: any = '', data: Object = {}) {
+  SERVER_CREATE_ITEM(ListID: ListID, label: string, checked: any = null, data: Object = {}) {
     console.log(checked);
     const id = this.genId.next().value;
     this.emit({
@@ -173,7 +173,7 @@ export class TodoListService {
       label: label,
       id: id,
       date: Date.now(),
-      checked: '',
+      checked: null,
       clock: -1,
       data: {}
     });
