@@ -1,17 +1,44 @@
-<section>
-  <td class="rowNumber">
-  {{index+1}}
-  </td><td class="rowCheck">
-
-  <p-triStateCheckbox [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"> </p-triStateCheckbox>
-  </td><td class="rowText">
-    <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
-        {{item.label}}
-      </label>
-      <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
-        <input #newLabel type="text" [value]="item.label"/>
-      </form>
-  </td><td class="rowDelete">
-    <i class="fa fa-times fa-lg hvr" (click)="delete()" title="Supprimer la tâche" [ngStyle]="editDeleteButton()"></i>
+<section >
+  <td class="columnDelete" >
+          <span class="fa-stack fa-lg hvr"
+                style="font-size:10px;color:red;"
+                [ngStyle]="editDeleteButton()"
+                title="Supprimer la tâche"
+                (click)="delete()">
+                  <i class="fa fa-minus fa-stack-1x" ></i>
+                  <i class="fa fa-circle-o fa-stack-2x" ></i>
+          </span>
+  </td>
+  <td class="columnNumber" [ngStyle]="colorLigne()">
+          {{index+1}}
+  </td>
+  <td class="columnCheck" [ngStyle]="colorLigne()">
+          <p-triStateCheckbox [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"> </p-triStateCheckbox>
+  </td>
+  <td class="columnText" [ngStyle]="colorLigne()">
+          <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
+              {{item.label}}
+          </label>
+          <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
+            <input #newLabel type="text" [value]="item.label"/>
+          </form>
+  </td>
+  <td class="columnDate" [ngStyle]="colorLigne()">
+    <p-calendar   dateFormat="dd/mm/yy"
+                  [ngModel]="getDateBegin()"
+                  (onSelect)="setDateBegin($event)"
+                  [showTime]="true"
+                  showButtonBar="true"
+                  [showIcon]="true"
+                  title="Date de début de la tâche" ></p-calendar>
+  </td>
+  <td class="columnDate" [ngStyle]="colorLigne()">
+    <p-calendar    dateFormat="dd/mm/yy"
+                   [ngModel]="getDateEnd()"
+                   (onSelect)="setDateEnd($event)"
+                   [showTime]="true"
+                   showButtonBar="true"
+                   [showIcon]="true"
+                   title="Date de fin de la tâche" ></p-calendar>
   </td>
 </section>

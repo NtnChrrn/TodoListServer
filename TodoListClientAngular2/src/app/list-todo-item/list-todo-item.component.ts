@@ -15,7 +15,7 @@ export class ListTodoItemComponent implements OnInit {
   private idList  : string;
   private list    : TodoListWithItems;
   private sub     : any;
-  private edit    : boolean = false;
+  private edit    : boolean = true;
 
   constructor(private todoListService: TodoListService, private route: ActivatedRoute) { }
 
@@ -24,7 +24,6 @@ export class ListTodoItemComponent implements OnInit {
       this.idList = params['id']; // (+) converts string 'id' to a number
     });
     this.list = this.todoListService.getList( this.idList);
-    //console.log("list: NAME " +  this.list.name);
   }
 
   getName(){
@@ -40,7 +39,6 @@ export class ListTodoItemComponent implements OnInit {
   }
 
   setEdit(){
-    console.log("<<list-todo>> edit = " + !this.edit);
     this.edit = !this.edit;
   }
 

@@ -21,16 +21,13 @@ export class TodoListComponent implements OnInit {
   }
 
   getColor(): string {
-    //console.log("<<to-list.component.ts>>getColor: Couleur affectée à " + this.list.id + " : " + this.list.data['color']);
     return this.list.data['color'] ? this.list.data['color'] : "#FFFFFF";
   }
 
   setColor(color: string) {
-    console.log("setColor", color);
-    this.list.data['color']=color;
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
-      this.list.data
+      {color:color}
     );
   }
 }
