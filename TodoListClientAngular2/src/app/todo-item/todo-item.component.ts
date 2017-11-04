@@ -16,6 +16,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
   @Input() index:   number;
   @Input() edit:    boolean;
   @Input() color:    string;
+  showComment : boolean = false;
+  comment : string;
 
   private editingLabel = false;
 
@@ -23,6 +25,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     console.log("init:dateBegin = "+this.item.data['dateBegin']);
+    this.comment = 'salut';
   }
 
   ngOnChanges(changes: SimpleChanges) { }
@@ -147,6 +150,15 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   delete() {
     this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
+  }
+
+  toggleComment(){
+    if(this.showComment == true){
+      this.showComment = false;
+    }else {
+      this.showComment = true;
+    }
+    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment : this.comment})
   }
   getColor(): string {
     return this.color;

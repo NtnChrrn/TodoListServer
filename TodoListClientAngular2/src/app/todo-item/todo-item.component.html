@@ -15,7 +15,7 @@
   <td class="columnCheck" [ngStyle]="colorLigne()">
           <p-triStateCheckbox [ngModel]="item.checked" (ngModelChange)="check(item.checked)"> </p-triStateCheckbox>
   </td>
-  <td class="columnText" [ngStyle]="colorLigne()">
+  <td class="columnText" [ngStyle]="colorLigne()" (click)="toggleComment()">
           <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
               {{item.label}}
           </label>
@@ -41,4 +41,10 @@
                    [showIcon]="true"
                    title="Date de fin de la tâche" ></p-calendar>
   </td>
+  <tr *ngIf="showComment" class="comment">
+    <form>
+      <input type = 'text' [(ngModel)]="comment" name="comment"/>
+    </form>
+
+  </tr>
 </section>
