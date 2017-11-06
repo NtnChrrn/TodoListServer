@@ -2,6 +2,8 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {TodoListWithItems, TodoListService} from "../todo-list.service";
 import { ActivatedRoute } from '@angular/router';
 import {ButtonModule} from 'primeng/primeng';
+import {createEmptyStateSnapshot} from "@angular/router/src/router_state";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-list-todo-item',
@@ -42,6 +44,21 @@ export class ListTodoItemComponent implements OnInit {
     this.edit = !this.edit;
   }
 
+  filtrerTache() {
+    let mot: string;
+    mot = (<HTMLInputElement>document.getElementById("rechercheFiltre")).value;
+    let lignes: any;
+    lignes = document.getElementsByClassName("trTableItemDetails");
+    let i: number; i = 0;
+    while (i < lignes.length) {
+      lignes.item(i).className = "trTableItemDetails invisible";
+      if (lignes.item(i).innerHTML.indexOf(mot) !== -1) {
+        lignes.item(i).className = "trTableItemDetails visible";
+      }
+      i++;
+    }
+  }
+
   createItem(label: string) {
     this.todoListService.SERVER_CREATE_ITEM(this.list.id, label, null);
   }
@@ -51,6 +68,6 @@ export class ListTodoItemComponent implements OnInit {
   }
 
   deleteAll() {
-    this.todoListService.SERVER_DELETE_ALL_ITEMS(this.list.id);
+     this.todoListService.SERVER_DELETE_ALL_ITEMS(this.list.id);
   }
 }

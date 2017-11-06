@@ -41,7 +41,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
       && this.getDateEndDateFormat() > today){
       color="#e67e22";
     }
-    console.log(color);
     let styles = {
       'background-color': color
     }
