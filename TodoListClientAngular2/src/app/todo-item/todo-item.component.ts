@@ -23,8 +23,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
   constructor(private todoListService: TodoListService) { }
 
   ngOnInit() {
-    this.comment = 'salut';
-    console.log("init:dateBegin = "+this.item.data['dateBegin']);
   }
 
   ngOnChanges(changes: SimpleChanges) { }
