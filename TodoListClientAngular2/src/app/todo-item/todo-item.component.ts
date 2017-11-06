@@ -17,7 +17,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
   @Input() edit:    boolean;
   @Input() color:    string;
   showComment : boolean = false;
-  comment : string;
 
   private editingLabel = false;
 
@@ -25,7 +24,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     console.log("init:dateBegin = "+this.item.data['dateBegin']);
-    this.comment = 'salut';
   }
 
   ngOnChanges(changes: SimpleChanges) { }
@@ -33,7 +31,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
   colorLigne(){
     let color = this.color;
     let today : Date = new Date();
-    console.log(">>>colorLigne");
 
     // if date limit is out
     if(this.getDateEnd()!=null && this.getDateEndDateFormat() < today){
@@ -158,7 +155,10 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }else {
       this.showComment = true;
     }
-    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment : this.comment})
+  }
+
+  updateComment() {
+    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: this.item.data['comment']});
   }
   getColor(): string {
     return this.color;
