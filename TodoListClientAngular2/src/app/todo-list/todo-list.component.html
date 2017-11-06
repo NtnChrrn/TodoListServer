@@ -1,16 +1,16 @@
-  <section class="root" [style.backgroundColor]="getColor()">
-    <span class="group-button">
-      <p-colorPicker [ngModel]="getColor()"
-                     (ngModelChange)="setColor($event)"
-                     title="Changer la couleur de la liste"
-                     styleClass="width:200px;"></p-colorPicker>
-      <i class="fa fa-times fa-lg hvr" (click)="delete()" title="Supprimer la liste"></i>
-    </span>
-    <br/><br/>
-    <a [routerLink]="['/lists-detail', list.id]">
-      <h3>
-        {{list.name}}
-      </h3>
-    </a>
-  </section>
+<section class="root" [style.backgroundColor]="getColor()">
+  <span class="group-button">
+    <p-colorPicker [ngModel]="getColor()"
+                   (ngModelChange)="setColor($event)"
+                   title="Changer la couleur de la liste"
+                   styleClass="width:200px;"></p-colorPicker>
+    <i class="fa fa-times fa-lg hvr" (click)="delete()" title="Supprimer la liste"></i>
+  </span>
+  <br/><br/>
+  <a [routerLink]="['/lists-detail', list.id]">
+    <h3>
+      {{list.name}}
+    </h3>
+  </a>
+</section>
 

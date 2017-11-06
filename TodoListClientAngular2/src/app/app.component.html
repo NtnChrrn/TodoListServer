@@ -1,5 +1,8 @@
 <header *ngIf="getUser()">
-  <h1><a [routerLink]="['/lists']">{{title}}</a></h1>
+  <div>
+    <h1><a [routerLink]="['/lists']">{{title}}</a></h1>
+    <p>Aujourd'hui, {{dateAujourdhui()}}</p>
+  </div>
   <section class="user">
     <label>Identifié via {{getUserProvider()}}</label>
     <section class="connection">

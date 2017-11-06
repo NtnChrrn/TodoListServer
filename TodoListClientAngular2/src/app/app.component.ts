@@ -12,10 +12,26 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
 })
 export class AppComponent implements OnInit {
   @Input() title = 'Listes de choses à faire ...';
+  private aujourdhui = new Date();
 
 
   constructor(private tdlService: TodoListService,
               private router: Router) {
+  }
+
+  dateAujourdhui(){
+      // les noms de jours / mois
+      let jours = new Array("dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi");
+      let mois = new Array("janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre");
+      // on recupere la date
+      let date = new Date();
+      // on construit le message
+      let message = jours[date.getDay()] + " ";   // nom du jour
+      message += date.getDate() + " ";   // numero du jour
+      message += mois[date.getMonth()] + " ";   // mois
+      message += date.getHours() + "h" + date.getMinutes();
+      return message;
+
   }
 
   getUser(): PassportUser {
