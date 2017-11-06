@@ -23,6 +23,11 @@ td.columnNumber{
   width: 70%;
   border-bottom: solid 1px black;
 }
+.comment{
+  height: 30px;
+  margin-left:50px;
+}
+
 
 
 

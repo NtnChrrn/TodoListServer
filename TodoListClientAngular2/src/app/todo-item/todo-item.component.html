@@ -43,4 +43,10 @@
                    [showIcon]="true"
                    title="Date de fin de la tâche" ></p-calendar>
   </td>
+
+  <div *ngIf="showComment" class="comment">
+    <form>
+      <input type='text' [(ngModel)]="item.data.comment" (input)="updateComment()" name="comment" size="35" placeholder="Commentaire..."/>
+    </form>
+  </div>
 </section>

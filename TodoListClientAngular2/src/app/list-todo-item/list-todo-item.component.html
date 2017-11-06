@@ -1,7 +1,9 @@
 <section id="list-todo-item" [style.backgroundColor]="getColor()">
+  <input style="float: right;margin-top:10px;margin-right:10%;" id="rechercheFiltre" type="text" placeholder="Rechercher" (change)="filtrerTache();" />
   <h3>
     {{getName()}}
   </h3>
+
   <table id="tableItemDetails">
     <th class="thTableItemDetails">
      <tr>
@@ -10,6 +12,7 @@
         <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
           <!--<label>Add a new item:</label>-->
           <input type="text" #newItemLabel placeholder="Entrée..."/>
+          <input id="rechercheFiltre" type="text" placeholder="Rechercher" (change)="filtrerTache();" />
         </form>
       </td>
      </tr>
@@ -28,7 +31,11 @@
     </tbody>
   </table>
   <div id="btn-grp">
+
     <button class="btn btn-warning" (click)="setEdit()"><i class="fa fa-wrench fa-lg"></i> Edit</button>
     <button class="btn btn-danger " (click)="deleteAll()"><i class="fa fa-trash-o fa-lg"></i> Delete all</button>
   </div>
+
 </section>
+
+
