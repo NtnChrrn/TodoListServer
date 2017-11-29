@@ -11,6 +11,9 @@ section{
 #list-todo-item{
   padding: 0px 10px 5px 10px;
 }
+button{
+    color:white;
+}
 h3{
   margin-top:15px;
   padding-top:15px;
@@ -24,6 +27,7 @@ h3{
 
 }
 .columnAdd{
+  /*background-color: #4CAF50;*/
   border: solid 1px black;
   border-bottom: solid 2px black;
   padding:5px 0px 5px 5px;
