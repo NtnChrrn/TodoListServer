@@ -112,10 +112,10 @@ export class TodoItemComponent implements OnInit, OnChanges {
       this.checked = true;
     }
     else if(checked == false){
-      this.checked = true;
+      this.checked = null;
     }
     else if(checked == true){
-      this.checked = null;
+      this.checked = false;
     }
     this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, this.checked);
   }
