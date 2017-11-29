@@ -25,6 +25,9 @@
             <input #newLabel type="text" [value]="item.label"/>
           </form>
   </td>
+  <td>
+    <label *ngIf="isExistigComment()">voir commentaire</label>
+  </td>
   <td class="columnDate" [ngStyle]="colorLigne()">
     <p-calendar   dateFormat="dd/mm/yy"
                   [ngModel]="getDateBegin()"

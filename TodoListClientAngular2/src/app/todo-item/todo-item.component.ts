@@ -147,6 +147,11 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
   }
 
+  isExistigComment(){
+    if (this.item.data['comment']==null) return false;
+    if (this.item.data['comment']=='') return false;
+    return true;
+  }
   toggleComment(){
     if(this.showComment == true){
       this.showComment = false;
