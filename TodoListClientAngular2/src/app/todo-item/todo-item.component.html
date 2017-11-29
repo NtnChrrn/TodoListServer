@@ -25,6 +25,9 @@
             <input #newLabel type="text" [value]="item.label"/>
           </form>
   </td>
+  <td>
+    <label *ngIf="isExistigComment()">voir commentaire</label>
+  </td>
   <td class="columnDate" [ngStyle]="colorLigne()">
     <p-calendar   dateFormat="dd/mm/yy"
                   [ngModel]="getDateBegin()"
@@ -46,7 +49,7 @@
 
   <div *ngIf="showComment" class="comment">
     <form>
-      <input type='text' [(ngModel)]="item.data.comment" (input)="updateComment()" name="comment" size="35" placeholder="Commentaire..."/>
+      <textarea [(ngModel)]="item.data.comment" (input)="updateComment()" name="comment" size="35"></textarea>
     </form>
   </div>
 </section>
