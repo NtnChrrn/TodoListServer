@@ -32,3 +32,13 @@ a:hover{
 #todo-list{
   padding: 5px 10px 5px 10px;
 }
+
+.red{
+  background-color: #F03434;
+}
+.yellow{
+  background-color: yellow;
+}
+.green{
+  background-color: #00B16A;
+}

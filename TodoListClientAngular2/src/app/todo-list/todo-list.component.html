@@ -1,3 +1,8 @@
+  <div style="width:100%; height:10px;" >
+     <span class="yellow" title="tâches non terminées à {{getPercentageOfUnrealised()}} %" style="height: 100%; display: inline-block; " [style.width.%]="getPercentageOfUnrealised().toFixed(1)" ></span><!--
+  --><span class="red"    title="tâches échouées à {{getPercentageOfFailed()}} %" style="height: 100%; display: inline-block; " [style.width.%]="getPercentageOfFailed().toFixed(1)" ></span><!--
+  --><span class="green"  title="tâches réussites à {{getPercentageOfRealised()}} %" style="height: 100%; display: inline-block; " [style.width.%]="getPercentageOfRealised().toFixed(1)" ></span>
+  </div>
 <section class="root" [style.backgroundColor]="getColor()">
   <span class="group-button">
     <p-colorPicker [ngModel]="getColor()"

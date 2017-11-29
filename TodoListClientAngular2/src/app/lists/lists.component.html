@@ -1,10 +1,17 @@
-
-<!--<p>There are {{getLists().length}} lists</p>-->
 <section class="form-add-list">
   <form (ngSubmit)="createList(newListName.value); newListName.value=''">
-    <input type="text" #newListName placeholder="Create a new list"/>
+    <input type="text" #newListName placeholder="Créer une nouvelle liste ..."/>
   </form>
 </section>
+<div class="cadre" style="">
+  <ul class="points" style="">
+    <li><span class="point yellow"></span>tâches non terminées</li>
+    <li><span class="point red"></span>tâches échouées</li>
+    <li><span class="point green"></span>tâches réussites</li>
+  </ul>
+</div>
+<!--<p>There are {{getLists().length}} lists</p>-->
+
 
 <!--
 <p>getItemsUI: {{getItemsUI() | json}}</p>

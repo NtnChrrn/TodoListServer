@@ -91,7 +91,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   *  dateEnd: 15/11/2017 17:15
   *  return Date : 2017-11-15T17:15:00
   */
-  getDateEndDateFormat():Date{
+  getDateEndDateFormat(): Date{
     if(this.item.data['dateEnd']==null)return null;
 
     return new Date(this.item.data['dateEnd'].substring(6,10)+
@@ -105,14 +105,14 @@ export class TodoItemComponent implements OnInit, OnChanges {
   *  dateBegin: 15/11/2017 17:15
   *  return Date : 2017-11-15T17:15:00
   */
-  getDateBeginDateFormat():Date{
-    if(this.item.data['dateBegin']==null)return null;
+  getDateBeginDateFormat(): Date{
+    if(this.item.data['dateBegin'] == null)return null;
 
-    return new Date(this.item.data['dateBegin'].substring(6,10)+
-              '-' + this.item.data['dateBegin'].substring(3,5) +
-              '-' + this.item.data['dateBegin'].substring(0,2) +
-              'T' + this.item.data['dateBegin'].substring(11,13) +
-              ':' + this.item.data['dateBegin'].substring(14,16) +':00');
+    return new Date(this.item.data['dateBegin'].substring(6, 10) +
+              '-' + this.item.data['dateBegin'].substring(3, 5)  +
+              '-' + this.item.data['dateBegin'].substring(0, 2)  +
+              'T' + this.item.data['dateBegin'].substring(11, 13) +
+              ':' + this.item.data['dateBegin'].substring(14, 16) + ':00');
   }
 
   isEditingLabel(): boolean {

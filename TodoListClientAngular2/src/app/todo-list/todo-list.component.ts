@@ -24,6 +24,41 @@ export class TodoListComponent implements OnInit {
     return this.list.data['color'] ? this.list.data['color'] : "#FFFFFF";
   }
 
+  /* return number of items realised in the list */
+  getNbChecked(): number {
+    let nb = 0;
+    for (const entry of this.list.items) {
+      if (entry.checked === true) { nb++; }
+    }
+    return nb;
+  }
+  getPercentageOfRealised(): number {
+    const nbCheck = this.getNbChecked();
+    if (this.list.items.length !== 0 && nbCheck !== 0) { return nbCheck / this.list.items.length * 100; }
+    return 0;
+  }
+
+  /* return number of items failed in the list */
+  getNbFailed(): number {
+    let nb = 0;
+    for (const entry of this.list.items) {
+      if (entry.checked === false) { nb++; }
+    }
+    return nb;
+  }
+
+  getPercentageOfFailed(): number {
+    const nbFailed = this.getNbFailed();
+    if (this.list.items.length !== 0 && nbFailed !== 0) { return nbFailed / this.list.items.length * 100; }
+    return 0;
+  }
+  getPercentageOfUnrealised(): number{
+    if (this.list.items.length>0) {
+      return 100 - this.getPercentageOfFailed() - this.getPercentageOfRealised();
+    }
+    return 0;
+  }
+
   setColor(color: string) {
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
