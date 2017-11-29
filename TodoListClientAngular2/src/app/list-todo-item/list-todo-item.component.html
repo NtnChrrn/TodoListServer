@@ -16,6 +16,7 @@
           <!--<label>Add a new item:</label>-->
           <input type="text" #newItemLabel placeholder="Entrée..."/>
         </form>
+         <button (click)="createItem(newItemLabel.value); newItemLabel.value=''; newItemLabel.focus()" class="btn btn-default">Ajouter tâche</button>
       </td>
      </tr>
     </th>
