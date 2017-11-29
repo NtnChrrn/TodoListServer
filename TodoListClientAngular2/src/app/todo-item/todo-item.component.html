@@ -2,7 +2,6 @@
   <td class="columnDelete" >
           <span class="fa-stack fa-lg hvr"
                 style="font-size:10px;color:red;"
-                [ngStyle]="editDeleteButton()"
                 title="Supprimer la tâche"
                 (click)="delete()">
                   <i class="fa fa-minus fa-stack-1x" ></i>
@@ -27,15 +26,6 @@
   </td>
   <td>
     <label *ngIf="isExistigComment()">voir commentaire</label>
-  </td>
-  <td class="columnDate" [ngStyle]="colorLigne()">
-    <p-calendar   dateFormat="dd/mm/yy"
-                  [ngModel]="getDateBegin()"
-                  (onSelect)="setDateBegin($event)"
-                  [showTime]="true"
-                  showButtonBar="true"
-                  [showIcon]="true"
-                  title="Date de début de la tâche" ></p-calendar>
   </td>
   <td class="columnDate" [ngStyle]="colorLigne()">
     <p-calendar    dateFormat="dd/mm/yy"

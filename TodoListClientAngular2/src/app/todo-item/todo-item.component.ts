@@ -16,8 +16,9 @@ export class TodoItemComponent implements OnInit, OnChanges {
   @Input() index:   number;
   @Input() edit:    boolean;
   @Input() color:    string;
-  showComment : boolean = false;
 
+  private checked : any;
+  private showComment : boolean = false;
   private editingLabel = false;
 
   constructor(private todoListService: TodoListService) { }
@@ -34,6 +35,9 @@ export class TodoItemComponent implements OnInit, OnChanges {
     // if date limit is out
     if(this.getDateEnd()!=null && this.getDateEndDateFormat() < today){
       color="red";
+      if(!this.checked){
+        this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, false);
+      }
     }
     // if date limit is near out (current date + 1 day)
     if(this.getDateEnd()!=null
@@ -55,14 +59,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.editLabel(false);
   }
 
-  setDateBegin(inputDate: any): void {
-    let d = this.addZero(inputDate.getDate()) + "/" + this.addZero((inputDate.getMonth()+1)) + "/" + inputDate.getFullYear() + " " + this.addZero(inputDate.getHours()) + ":" + this.addZero(inputDate.getMinutes());
-    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,{dateBegin:d});
-  }
-
-  getDateBegin(){
-    return this.item.data['dateBegin'] ? this.item.data['dateBegin'].toString() : null;
-  }
 
   /* Function to add zero if neccesery
   *  date any: 1
@@ -100,21 +96,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
               'T' + this.item.data['dateEnd'].substring(11,13) +
               ':' + this.item.data['dateEnd'].substring(14,16) +':00');
   }
-
-  /* get Date begin of item in DATE format
-  *  dateBegin: 15/11/2017 17:15
-  *  return Date : 2017-11-15T17:15:00
-  */
-  getDateBeginDateFormat(): Date{
-    if(this.item.data['dateBegin'] == null)return null;
-
-    return new Date(this.item.data['dateBegin'].substring(6, 10) +
-              '-' + this.item.data['dateBegin'].substring(3, 5)  +
-              '-' + this.item.data['dateBegin'].substring(0, 2)  +
-              'T' + this.item.data['dateBegin'].substring(11, 13) +
-              ':' + this.item.data['dateBegin'].substring(14, 16) + ':00');
-  }
-
   isEditingLabel(): boolean {
     return this.editingLabel;
   }
@@ -123,24 +104,17 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.editingLabel = edit;
   }
 
-  editDeleteButton() {
-    let styles = {
-      'display': this.edit ? 'none' : 'block'
-    }
-    return styles;
-  }
-
   check(checked: any) {
     if(checked == null){
-      checked = false;
+      this.checked = true;
     }
     else if(checked == false){
-      checked = true;
+      this.checked = null;
     }
     else if(checked == true){
-      checked = null;
+      this.checked = false;
     }
-    this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, checked);
+    this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, this.checked);
   }
 
   delete() {
