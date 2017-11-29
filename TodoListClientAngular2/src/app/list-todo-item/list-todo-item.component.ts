@@ -17,7 +17,6 @@ export class ListTodoItemComponent implements OnInit {
   private idList  : string;
   private list    : TodoListWithItems;
   private sub     : any;
-  private edit    : boolean = true;
 
   constructor(private todoListService: TodoListService, private route: ActivatedRoute) { }
 
@@ -34,14 +33,6 @@ export class ListTodoItemComponent implements OnInit {
 
   getItems(){
      return this.list.items;
-  }
-
-  getEdit(){
-    return this.edit;
-  }
-
-  setEdit(){
-    this.edit = !this.edit;
   }
 
   filtrerTache() {
@@ -66,8 +57,5 @@ export class ListTodoItemComponent implements OnInit {
   getColor(): string {
     return this.list.data["color"] ? this.list.data["color"] : "#FFFFFF";
   }
-
-  deleteAll() {
-     this.todoListService.SERVER_DELETE_ALL_ITEMS(this.list.id);
-  }
 }
+
