@@ -42,3 +42,12 @@ a:hover{
 .green{
   background-color: #00B16A;
 }
+
+span.tache{
+  height: 100%;
+  display: inline-block;
+}
+
+.taches{
+  width:100%; height:10px;
+}

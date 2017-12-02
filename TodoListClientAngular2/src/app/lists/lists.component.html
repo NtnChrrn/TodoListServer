@@ -1,22 +1,16 @@
 <section class="form-add-list">
-  <form (ngSubmit)="createList(newListName.value); newListName.value=''">
-    <input type="text" #newListName placeholder="Créer une nouvelle liste ..."/>
+  <form class='inl'(ngSubmit)="createList(newListName.value); newListName.value=''">
+    <input type="text" #newListName placeholder="Saisir une nouvelle liste ..."/>
   </form>
+  <button (click)="createList(newListName.value); newListName.value=''; newItemLabel.focus()" class="btn btn-default btn-sm">Ajouter</button>
 </section>
-<div class="cadre" style="">
-  <ul class="points" style="">
+<div class="cadre">
+  <ul class="points">
     <li><span class="point yellow"></span>tâches non terminées</li>
     <li><span class="point red"></span>tâches échouées</li>
     <li><span class="point green"></span>tâches réussites</li>
   </ul>
 </div>
-<!--<p>There are {{getLists().length}} lists</p>-->
-
-
-<!--
-<p>getItemsUI: {{getItemsUI() | json}}</p>
-<p>getLists: {{getLists() | json}}</p>
--->
 <section class="lists">
   <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock"></app-todo-list>
 </section>

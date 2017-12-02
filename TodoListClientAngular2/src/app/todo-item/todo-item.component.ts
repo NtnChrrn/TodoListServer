@@ -3,6 +3,7 @@ import {ListID, ItemJSON, TodoListService}  from "../todo-list.service";
 
 
 
+
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
@@ -21,7 +22,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
   private showComment : boolean = false;
   private editingLabel = false;
 
-  constructor(private todoListService: TodoListService) { }
+  constructor(private todoListService: TodoListService
+              ) { }
 
   ngOnInit() {
   }
@@ -58,7 +60,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }
     this.editLabel(false);
   }
-
 
   /* Function to add zero if neccesery
   *  date any: 1
@@ -119,6 +120,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   delete() {
     this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
+
   }
 
   isExistigComment(){

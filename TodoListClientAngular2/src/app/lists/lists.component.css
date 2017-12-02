@@ -49,6 +49,6 @@ ul.points{
   padding:0px;
 }
 
-ul.points li{
-
+form.inl{
+  display:inline-block;
 }

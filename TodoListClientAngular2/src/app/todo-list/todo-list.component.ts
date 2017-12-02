@@ -9,11 +9,14 @@ import {TodoListWithItems, TodoListService} from "../todo-list.service";
 export class TodoListComponent implements OnInit {
   @Input() list: TodoListWithItems;
   @Input() clock: number;
+  public color: string;
+
   constructor(private todoListService: TodoListService) {
 
   }
 
   ngOnInit() {
+    this.color = this.getColor();
   }
 
   delete() {
@@ -59,10 +62,10 @@ export class TodoListComponent implements OnInit {
     return 0;
   }
 
-  setColor(color: string) {
+  setColor(event: any) {
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
-      {color:color}
+      {color: event.value}
     );
   }
 }

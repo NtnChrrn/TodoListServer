@@ -13,8 +13,7 @@
        <td class="columnDelete"></td>
        <td class="columnAdd" width="100%">
         <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
-          <!--<label>Add a new item:</label>-->
-          <input type="text" #newItemLabel placeholder="Entrée..."/>
+          <input type="text" #newItemLabel placeholder="Saisir une nouvelle tâche..."/>
         </form>
          <button (click)="createItem(newItemLabel.value); newItemLabel.value=''; newItemLabel.focus()" class="btn btn-default">Ajouter tâche</button>
       </td>

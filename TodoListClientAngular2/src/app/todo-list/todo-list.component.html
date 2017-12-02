@@ -1,12 +1,12 @@
-  <div style="width:100%; height:10px;" >
-     <span class="yellow" title="tâches non terminées à {{getPercentageOfUnrealised()}} %" style="height: 100%; display: inline-block; " [style.width.%]="getPercentageOfUnrealised().toFixed(1)" ></span><!--
-  --><span class="red"    title="tâches échouées à {{getPercentageOfFailed()}} %" style="height: 100%; display: inline-block; " [style.width.%]="getPercentageOfFailed().toFixed(1)" ></span><!--
-  --><span class="green"  title="tâches réussites à {{getPercentageOfRealised()}} %" style="height: 100%; display: inline-block; " [style.width.%]="getPercentageOfRealised().toFixed(1)" ></span>
+  <div class="taches" >
+     <span class="tache yellow" title="tâches non terminées à {{getPercentageOfUnrealised().toFixed(0)}} %" [style.width.%]="getPercentageOfUnrealised().toFixed(1)" ></span><!--
+  --><span class="tache red"    title="tâches échouées à {{getPercentageOfFailed().toFixed(0)}} %"          [style.width.%]="getPercentageOfFailed().toFixed(1)" ></span><!--
+  --><span class="tache green"  title="tâches réussites à {{getPercentageOfRealised().toFixed(0)}} %"       [style.width.%]="getPercentageOfRealised().toFixed(1)" ></span>
   </div>
 <section class="root" [style.backgroundColor]="getColor()">
   <span class="group-button">
-    <p-colorPicker [ngModel]="getColor()"
-                   (ngModelChange)="setColor($event)"
+    <p-colorPicker [(ngModel)]="color"
+                   (onChange)="setColor($event)"
                    title="Changer la couleur de la liste"
                    styleClass="width:200px;"></p-colorPicker>
     <i class="fa fa-times fa-lg hvr" (click)="delete()" title="Supprimer la liste"></i>
