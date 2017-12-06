@@ -5,10 +5,10 @@
   </div>
 <section class="root" [style.backgroundColor]="getColor()">
   <span class="group-button">
-    <p-colorPicker [(ngModel)]="color"
-                   (onChange)="setColor($event)"
+    <input type="color" [(ngModel)]="color"
+                   (ngModelChange)="setColor($event)"
                    title="Changer la couleur de la liste"
-                   styleClass="width:200px;"></p-colorPicker>
+                   styleClass="width:200px;"/>
     <i class="fa fa-times fa-lg hvr" (click)="delete()" title="Supprimer la liste"></i>
   </span>
   <br/><br/>

@@ -15,7 +15,7 @@
         <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
           <input type="text" #newItemLabel placeholder="Saisir une nouvelle tâche..."/>
         </form>
-         <button (click)="createItem(newItemLabel.value); newItemLabel.value=''; newItemLabel.focus()" class="btn btn-default">Ajouter tâche</button>
+         <button (click)="createItem(newItemLabel.value); newItemLabel.value=''; newItemLabel.focus()" class="btn btn-default"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Ajouter tâche</button>
       </td>
      </tr>
     </th>

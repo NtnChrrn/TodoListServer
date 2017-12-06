@@ -29,9 +29,17 @@ export class AppComponent implements OnInit {
       let message = jours[date.getDay()] + " ";   // nom du jour
       message += date.getDate() + " ";   // numero du jour
       message += mois[date.getMonth()] + " ";   // mois
-      message += date.getHours() + "h" + date.getMinutes();
+      message += date.getHours() + "h" + this.addZero(date.getMinutes());
       return message;
 
+  }
+  /* Function to add zero if neccesery
+ *  date any: 1
+ *  return string: 01
+ */
+  addZero(date : any): string{
+    if(date<10)return '0' + date;
+    else return date;
   }
 
   getUser(): PassportUser {

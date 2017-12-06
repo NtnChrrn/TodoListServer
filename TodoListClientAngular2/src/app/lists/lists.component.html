@@ -2,7 +2,7 @@
   <form class='inl'(ngSubmit)="createList(newListName.value); newListName.value=''">
     <input type="text" #newListName placeholder="Saisir une nouvelle liste ..."/>
   </form>
-  <button (click)="createList(newListName.value); newListName.value=''; newItemLabel.focus()" class="btn btn-default btn-sm">Ajouter</button>
+  <button (click)="createList(newListName.value); newListName.value=''; newItemLabel.focus()" class="btn btn-default btn-sm"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Ajouter</button>
 </section>
 <div class="cadre">
   <ul class="points">

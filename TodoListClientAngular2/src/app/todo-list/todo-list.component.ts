@@ -62,10 +62,11 @@ export class TodoListComponent implements OnInit {
     return 0;
   }
 
-  setColor(event: any) {
+  setColor(colorPicked: string) {
+    console.log(colorPicked);
     this.todoListService.SERVER_UPDATE_LIST_DATA(
       this.list.id,
-      {color: event.value}
+      {color: colorPicked}
     );
   }
 }

@@ -5,6 +5,7 @@ import {ButtonModule} from 'primeng/primeng';
 import {createEmptyStateSnapshot} from "@angular/router/src/router_state";
 import {forEach} from "@angular/router/src/utils/collection";
 
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 @Component({
   selector: 'app-list-todo-item',
   templateUrl: './list-todo-item.component.html',
