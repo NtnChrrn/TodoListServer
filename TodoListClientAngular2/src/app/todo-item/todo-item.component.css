@@ -31,7 +31,7 @@ td.columnNumber{
   margin-top: -15px;
 }
 .fa-trash-o{
-  float: left;
+  cursor : pointer;
   width: 20%;
   color: #F03434;
   float: left;
