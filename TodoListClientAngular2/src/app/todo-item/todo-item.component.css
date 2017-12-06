@@ -1,6 +1,3 @@
-xsection.toBeUpdated {
-  background-color: orangered;
-}
 form {
   display: inline;
 }
@@ -14,6 +11,7 @@ td.columnNumber{
   border-bottom: solid 1px black;
 
 }
+
 .columnCheck{
   width: 40px;
   text-align: center;
@@ -26,6 +24,18 @@ td.columnNumber{
 .comment{
   height: 30px;
   margin-left:50px;
+}
+
+.columnDelete{
+  float: right;
+  margin-top: -15px;
+}
+.fa-trash-o{
+  float: left;
+  width: 20%;
+  color: #F03434;
+  float: left;
+  size: 36px;
 }
 
 

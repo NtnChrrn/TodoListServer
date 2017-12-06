@@ -1,13 +1,5 @@
 <section >
-  <td class="columnDelete" >
-          <span class="fa-stack fa-lg hvr"
-                style="font-size:10px;color:red;"
-                title="Supprimer la tâche"
-                (click)="delete()">
-                  <i class="fa fa-minus fa-stack-1x" ></i>
-                  <i class="fa fa-circle-o fa-stack-2x" ></i>
-          </span>
-  </td>
+
   <td class="columnNumber" [ngStyle]="colorLigne()">
           {{index+1}}
   </td>
@@ -36,7 +28,9 @@
                    [showIcon]="true"
                    title="Date de fin de la tâche" ></p-calendar>
   </td>
-
+  <td class="columnDelete" >
+    <i class="fa fa-trash-o fa-3" aria-hidden="true" (click)="delete()"></i>
+  </td>
   <div *ngIf="showComment" class="comment">
     <form>
       <textarea [(ngModel)]="item.data.comment" (input)="updateComment()" name="comment" size="35"></textarea>
