@@ -118,8 +118,16 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, this.checked);
   }
 
+  confirmDelete(){
+
+  }
+
+
+
   delete() {
-    this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
+    if(confirm("Voulez-vous supprimez l'item ?")) {
+      this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
+    }
 
   }
 

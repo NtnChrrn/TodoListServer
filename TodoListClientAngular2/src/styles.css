@@ -1,12 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files*/
 html{
   height: 100%;
-  /*background-color: #ff9c08;*/
-  /*background-image: url(img/beer.svg);*/
   background-repeat: no-repeat;
   background-position: center center;
   background-color: #b1deec;
-
 }
 
 body{
@@ -23,17 +20,6 @@ a:hover{
 #app-root{
   background-color: #b1deec;
 }
-#svg_beer{
-  text-align:center;
-  padding: 3em 0;
-}
-
-
-.columnDelete{
-  width: 25px;
-  border-right: 1px solid black;
-}
-
 
 .columnDate p-calendar input{
   width: 124px;
