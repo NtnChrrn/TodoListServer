@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ListID, ItemJSON, TodoListService}  from "../todo-list.service";
+import {ConfirmationService,SidebarModule} from 'primeng/primeng';
 
 
 
@@ -8,7 +9,8 @@ import {ListID, ItemJSON, TodoListService}  from "../todo-list.service";
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ConfirmationService]
 })
 export class TodoItemComponent implements OnInit, OnChanges {
   @Input() item:    ItemJSON;
@@ -22,8 +24,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   private showComment : boolean = false;
   private editingLabel = false;
 
-  constructor(private todoListService: TodoListService
-              ) { }
+  constructor(private todoListService: TodoListService,private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
   }
@@ -52,14 +53,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }
     return styles;
   }
-  setLabel(label: string) {
-    if (label === "") {
-      this.delete();
-    } else {
-      this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id, label);
-    }
-    this.editLabel(false);
-  }
+
+
 
   /* Function to add zero if neccesery
   *  date any: 1
@@ -118,16 +113,19 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, this.checked);
   }
 
-  confirmDelete(){
 
-  }
+  confirm() {
+    console.log("salut");
+    this.confirmationService.confirm({
+      message: 'Voulez-vous supprimer cet item ?',
+      header: 'Confirmation de suppression',
+      icon: 'fa fa-trash',
+      accept: () => {
+        this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
+      },
 
+    });
 
-
-  delete() {
-    if(confirm("Voulez-vous supprimez l'item ?")) {
-      this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
-    }
 
   }
 

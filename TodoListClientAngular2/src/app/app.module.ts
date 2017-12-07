@@ -11,7 +11,9 @@ import { MenuModule,
          ColorPickerModule,
          TriStateCheckboxModule,
          CalendarModule,
-         OverlayPanelModule}        from 'primeng/primeng';
+         OverlayPanelModule,
+         ConfirmDialogModule,
+         SidebarModule}        from 'primeng/primeng';
 import { AppComponent }             from './app.component';
 import { TodoListComponent }        from './todo-list/todo-list.component';
 import { TodoItemComponent }        from './todo-item/todo-item.component';
@@ -114,9 +116,11 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatTooltipModule,
     MatStepperModule,
-    RouterModule.forRoot(appRoutes, {useHash: true} )
+    RouterModule.forRoot(appRoutes, {useHash: true}),
+    ConfirmDialogModule,
+    SidebarModule,
   ],
-  exports: [],
+  exports: [ConfirmDialogModule],
   providers: [TodoListService],
   bootstrap: [AppComponent]
 })
