@@ -22,6 +22,14 @@ h3 {
   display:block;
 }
 
+.icons-list{
+  color: white;
+}
+
+.icons-list:hover{
+  color: black;
+}
+
 .hvr:hover{
   cursor:pointer;
 }
@@ -54,4 +62,13 @@ span.tache{
 
 .btnColor{
   margin:2px;
+}
+
+.titre-tache{
+  color: white;
+  text-decoration: none;
+}
+
+.titre-tache:hover{
+  color: black;
 }

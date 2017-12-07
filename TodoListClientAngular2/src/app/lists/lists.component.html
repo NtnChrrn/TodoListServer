@@ -1,16 +1,21 @@
-<section class="form-add-list">
-  <form class='inl'(ngSubmit)="createList(newListName.value); newListName.value=''">
-    <input type="text" #newListName placeholder="Saisir une nouvelle liste ..."/>
-  </form>
-  <button (click)="createList(newListName.value); newListName.value=''; newItemLabel.focus()" class="btn btn-default btn-sm"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Ajouter</button>
+<section class="form-add-list container">
+  <div class="col-lg-3">
+    <form class='inl'(ngSubmit)="createList(newListName.value); newListName.value=''">
+      <input type="text" #newListName placeholder="Saisir une nouvelle liste ..."/>
+    </form>
+    <button (click)="createList(newListName.value); newListName.value=''; newItemLabel.focus()" class="btn btn-default btn-sm"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Ajouter</button>
+  </div>
+  <div class="col-lg-9">
+    <ul class="points">
+      <li><span class="point yellow"></span>tâches non terminées</li>
+      <li><span class="point red"></span>tâches échouées</li>
+      <li><span class="point green"></span>tâches réussites</li>
+    </ul>
+  </div>
 </section>
-<div class="cadre">
-  <ul class="points">
-    <li><span class="point yellow"></span>tâches non terminées</li>
-    <li><span class="point red"></span>tâches échouées</li>
-    <li><span class="point green"></span>tâches réussites</li>
-  </ul>
-</div>
-<section class="lists">
+<!--<section class="container">
+  <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock" class="col-lg-3"></app-todo-list>
+</section>-->
+<section>
   <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock"></app-todo-list>
 </section>
