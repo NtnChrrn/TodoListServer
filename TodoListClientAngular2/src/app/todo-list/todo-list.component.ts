@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {TodoListWithItems, TodoListService} from "../todo-list.service";
 
+
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -11,9 +12,7 @@ export class TodoListComponent implements OnInit {
   @Input() clock: number;
   public color: string;
 
-  constructor(private todoListService: TodoListService) {
-
-  }
+  constructor(private todoListService: TodoListService) {}
 
   ngOnInit() {
     this.color = this.getColor();
@@ -68,5 +67,9 @@ export class TodoListComponent implements OnInit {
       this.list.id,
       {color: colorPicked}
     );
+  }
+
+  getColors(){
+    return this.todoListService.getColors();
   }
 }

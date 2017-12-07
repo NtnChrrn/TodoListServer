@@ -10,7 +10,8 @@ import { MenuModule,
          MenuItem,
          ColorPickerModule,
          TriStateCheckboxModule,
-         CalendarModule}            from 'primeng/primeng';
+         CalendarModule,
+         OverlayPanelModule}        from 'primeng/primeng';
 import { AppComponent }             from './app.component';
 import { TodoListComponent }        from './todo-list/todo-list.component';
 import { TodoItemComponent }        from './todo-item/todo-item.component';
@@ -79,7 +80,9 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserModule, HttpModule, BrowserAnimationsModule,ColorPickerModule,
-    CalendarModule, TriStateCheckboxModule,
+    CalendarModule,
+    OverlayPanelModule,
+    TriStateCheckboxModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -111,7 +114,6 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatTooltipModule,
     MatStepperModule,
-
     RouterModule.forRoot(appRoutes, {useHash: true} )
   ],
   exports: [],

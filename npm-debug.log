@@ -1,33 +1,37 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'run', 'server' ]
-2 info using npm@3.10.8
-3 info using node@v6.9.1
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'server',
+1 verbose cli   '--scripts-prepend-node-path=auto' ]
+2 info using npm@3.10.10
+3 info using node@v6.9.5
 4 verbose run-script [ 'preserver', 'server', 'postserver' ]
 5 info lifecycle TodoListServer@1.0.0~preserver: TodoListServer@1.0.0
 6 silly lifecycle TodoListServer@1.0.0~preserver: no script for preserver, continuing
 7 info lifecycle TodoListServer@1.0.0~server: TodoListServer@1.0.0
 8 verbose lifecycle TodoListServer@1.0.0~server: unsafe-perm in lifecycle true
-9 verbose lifecycle TodoListServer@1.0.0~server: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Aladin/Desktop/TodoListServer/node_modules/.bin:/Applications/Postgres.app/Contents/Versions/9.6/bin:/Users/Aladin/anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-10 verbose lifecycle TodoListServer@1.0.0~server: CWD: /Users/Aladin/Desktop/TodoListServer
-11 silly lifecycle TodoListServer@1.0.0~server: Args: [ '-c', 'node ./appJS/server.js' ]
+9 verbose lifecycle TodoListServer@1.0.0~server: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Antoine\WebstormProjects\ihm\TodoListServer\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\PuTTY\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\RailsInstaller\Git\cmd;C:\RailsInstaller\Ruby2.3.0\bin;C:\Ruby24-x64\bin;C:\Users\Antoine\AppData\Local\Microsoft\WindowsApps;C:\Users\Antoine\AppData\Roaming\npm;C:\Users\Antoine\AppData\Local\GitHubDesktop\bin;C:\Users\Antoine\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\
+10 verbose lifecycle TodoListServer@1.0.0~server: CWD: C:\Users\Antoine\WebstormProjects\ihm\TodoListServer
+11 silly lifecycle TodoListServer@1.0.0~server: Args: [ '/d /s /c', 'node ./appJS/server.js' ]
 12 silly lifecycle TodoListServer@1.0.0~server: Returned: code: 1  signal: null
 13 info lifecycle TodoListServer@1.0.0~server: Failed to exec server script
 14 verbose stack Error: TodoListServer@1.0.0 server: `node ./appJS/server.js`
 14 verbose stack Exit status 1
-14 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
+14 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:255:16)
 14 verbose stack     at emitTwo (events.js:106:13)
 14 verbose stack     at EventEmitter.emit (events.js:191:7)
-14 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+14 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
 14 verbose stack     at emitTwo (events.js:106:13)
 14 verbose stack     at ChildProcess.emit (events.js:191:7)
 14 verbose stack     at maybeClose (internal/child_process.js:877:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid TodoListServer@1.0.0
-16 verbose cwd /Users/Aladin/Desktop/TodoListServer
-17 error Darwin 16.7.0
-18 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run" "server"
-19 error node v6.9.1
-20 error npm  v3.10.8
+16 verbose cwd C:\Users\Antoine\WebstormProjects\ihm\TodoListServer
+17 error Windows_NT 10.0.16299
+18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "server" "--scripts-prepend-node-path=auto"
+19 error node v6.9.5
+20 error npm  v3.10.10
 21 error code ELIFECYCLE
 22 error TodoListServer@1.0.0 server: `node ./appJS/server.js`
 22 error Exit status 1

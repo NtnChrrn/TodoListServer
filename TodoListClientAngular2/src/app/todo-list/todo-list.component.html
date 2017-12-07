@@ -5,11 +5,11 @@
   </div>
 <section class="root" [style.backgroundColor]="getColor()">
   <span class="group-button">
-    <input type="color" [(ngModel)]="color"
-                   (ngModelChange)="setColor($event)"
-                   title="Changer la couleur de la liste"
-                   styleClass="width:200px;"/>
     <i class="fa fa-times fa-lg hvr" (click)="delete()" title="Supprimer la liste"></i>
+    <i class="fa fa-paint-brush" (click)="op.toggle($event)" title="Changer la couleur de la liste"></i>
+    <p-overlayPanel #op>
+      <button mat-mini-fab *ngFor="let c of this.getColors();" [style.backgroundColor]="c.color" title="{{c.name}}" class="btnColor" (click)="setColor(c.color)"></button>
+    </p-overlayPanel>
   </span>
   <br/><br/>
   <a [routerLink]="['/lists-detail', list.id]">

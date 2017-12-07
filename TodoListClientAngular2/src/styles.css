@@ -5,13 +5,13 @@ html{
   /*background-image: url(img/beer.svg);*/
   background-repeat: no-repeat;
   background-position: center center;
-  background-color: #90C3D4;
+  background-color: #b1deec;
 
 }
 
 body{
   padding-top: 1.2%;
-  background-color: #90C3D4;
+  background-color: #b1deec;
 }
 a{
   text-decoration: none;
@@ -21,7 +21,7 @@ a:hover{
   color: black;
 }
 #app-root{
-  background-color: #90C3D4;
+  background-color: #b1deec;
 }
 #svg_beer{
   text-align:center;

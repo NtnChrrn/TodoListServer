@@ -29,11 +29,18 @@ function* generatorPrefix(prefix: string) {
   }
 }
 
-let colors : string[]= ['#2ecc71', '#3498db', '#f1c40f', '#e67e22', '#1abc9c', '#9b59b6',
-                        '#2980b9','#27ae60','#16a085',  '#d35400', '#c0392b',
-                        '#bdc3c7', '#ecf0f1', '#95a5a6'];
+let colors = [
+  {id:1,   color:'#4A90E2',   name: 'bleu'},
+  {id:2,   color:'#16a765',   name: 'vert'},
+  {id:3,   color: '#179e9a',  name: 'turquoise'},
+  {id:4,   color: '#faa958',  name: 'orange'},
+  {id:5,   color: '#d573cf',  name: 'pourpre'},
+  {id:6,   color: '#f55',     name: 'rouge'},
+  {id:7,   color: '#d06b64',  name: 'marron'},
+  {id:8,   color: '#a7b0c0',  name: 'gris cendré'}];
 function generatorColor() {
-  return colors[Math.floor(Math.random() * (colors.length)) ];
+  let indexRandom = Math.floor(Math.random() * (colors.length)+1);
+  return (colors.find(item => item.id === indexRandom )).color;
 }
 
 @Injectable()
@@ -101,6 +108,10 @@ export class TodoListService {
 
   tryReconnectSocket() {
     this.sio.open();
+  }
+
+  getColors():Object[]{
+    return colors;
   }
 
   /*****************************************************************************************************************************************
