@@ -1,4 +1,4 @@
-<section xmlns="http://www.w3.org/1999/html">
+<section xmlns="http://www.w3.org/1999/html" >
 
   <td class="columnNumber" [ngStyle]="colorLigne()">
           {{index+1}}
@@ -33,12 +33,15 @@
       </p-footer>
     </p-confirmDialog>
     <!--<i class="fa fa-trash-o fa-3" aria-hidden="true" (click)="confirm()"></i>-->
-    <button (click)="confirm()" pButton icon="fa fa-trash-o fa-3" label="Delete"></button>
+    <button class="buttonTest" (mouseleave)="mouseOnButton = false;" (mouseover)="mouseOnButton = true;" [ngClass]="{'activeButton': mouseOnButton}" (click)="confirm()" pButton icon="fa fa-trash-o fa-3" label="Delete"></button>
   </td>
-  <p-sidebar [(visible)]="display" position="right">
-  <div>
+  <p-sidebar [(visible)]="display" position="right" >
+  <div class="sidebar" [ngStyle]="colorLigne()">
     <p>{{item.label}}
       </p>
+    <p>
+      A faire avant : {{item.data.dateEnd}}
+    </p>
     Commentaire :
     <form>
       <textarea [(ngModel)]="item.data.comment" (input)="updateComment()" name="comment" size="35"></textarea>
