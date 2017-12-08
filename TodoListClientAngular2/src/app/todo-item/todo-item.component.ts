@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ListID, ItemJSON, TodoListService}  from "../todo-list.service";
-import {ConfirmationService,SidebarModule} from 'primeng/primeng';
+import {ConfirmationService} from 'primeng/primeng';
 
 
 
