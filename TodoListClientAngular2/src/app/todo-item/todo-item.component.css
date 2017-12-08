@@ -38,6 +38,18 @@ td.columnNumber{
   size: 36px;
 }
 
+.sidebar{
+  height: 100%;
+}
+
+.activeButton {
+  opacity: 1 !important;
+}
+
+.buttonTest {
+  opacity: 0;
+}
+
 
 
 

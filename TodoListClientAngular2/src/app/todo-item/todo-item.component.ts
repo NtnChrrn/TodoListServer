@@ -23,6 +23,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   private checked : any;
   private showComment : boolean = false;
   private editingLabel = false;
+  mouseOnButton = false;
 
   constructor(private todoListService: TodoListService,private confirmationService: ConfirmationService) { }
 
