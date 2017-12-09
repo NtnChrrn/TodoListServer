@@ -33,7 +33,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) { }
 
   colorLigne(){
-    let color = this.color;
+    let color;
     let today : Date = new Date();
 
     // if date limit is out
@@ -49,12 +49,18 @@ export class TodoItemComponent implements OnInit, OnChanges {
       && this.getDateEndDateFormat() > today){
       color="#e67e22";
     }
+    /*let styles = {
+      'border-left': 'solid 5px' + color
+    }*/
+    return color;
+  }
+
+  colorBorder(){
     let styles = {
-      'background-color': color
+      'background-color': this.colorLigne()
     }
     return styles;
   }
-
 
 
   /* Function to add zero if neccesery

@@ -1,6 +1,7 @@
 <section (dblclick)="display=true" (mouseleave)="mouseOnButton = false;" (mouseover)="mouseOnButton = true;"
   xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
+  <td class="colorDate" [ngStyle]="colorBorder()"></td>
   <td class="columnNumber">
           {{index+1}}
   </td>
