@@ -26,9 +26,10 @@
 
      </tr>
     </th>
-    <tbody >
+    <tbody pDroppable="tache">
       <tr *ngFor="let item of getItems(); let i = index" class="trTableItemDetails" >
           <app-todo-item
+                       pDraggable="tache"
                        [clock]  = "item.clock"
                        [item]   = "item"
                        [listId] = "list.id"
@@ -37,6 +38,7 @@
           </app-todo-item>
       </tr>
     </tbody>
+    
   </table>
 </section>
 
