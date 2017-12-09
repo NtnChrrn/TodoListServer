@@ -1,5 +1,6 @@
 <section id="list-todo-item"  [style.backgroundColor]="getColor()">
-  <div class="container">
+  <!-- back to lists and search -->
+  <div class="container marginBottom">
     <div class="row">
       <!-- btn return lists -->
       <div class="col-lg-6">
@@ -10,16 +11,19 @@
         <input id="rechercheFiltre" type="text" placeholder="Rechercher" (change)="filtrerTache();" />
       </div>
     </div>
+  </div>
 
+  <!-- add form and items list -->
+  <div class="container whiteBackground">
     <!-- titre liste -->
-    <div class="row addItem">
+    <div class="row">
       <div class="col-lg-12 text-center">
         <h3 id="title">{{getName()}}</h3>
       </div>
     </div>
 
     <!-- form add item -->
-    <div class="row addItem">
+    <div class="row marginBottom">
       <div class="col-lg-12">
         <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
           <input type="text" #newItemLabel placeholder="Saisir une nouvelle tâche..." class="newItem"/>
@@ -27,11 +31,9 @@
         <button (click)="createItem(newItemLabel.value); newItemLabel.value=''; newItemLabel.focus()" class="addBtn"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Ajouter tâche</button>
       </div>
     </div>
-  </div>
 
-  <table id="tableItemDetails">
-    <tbody >
-    <tr *ngFor="let item of getItems(); let i = index" class="trTableItemDetails" >
+    <!-- each item row -->
+    <!--<div class="row" *ngFor="let item of getItems(); let i = index">
       <app-todo-item
         [clock]  = "item.clock"
         [item]   = "item"
@@ -39,8 +41,26 @@
         [index]  = "i"
         [color]="getColor()">
       </app-todo-item>
-    </tr>
-    </tbody>
+    </div>-->
 
-  </table>
+    <div class="row">
+      <div class="col-lg-12">
+        <table id="tableItemDetails">
+          <tbody >
+          <tr *ngFor="let item of getItems(); let i = index" class="trTableItemDetails" >
+            <app-todo-item
+              [clock]  = "item.clock"
+              [item]   = "item"
+              [listId] = "list.id"
+              [index]  = "i"
+              [color]="getColor()">
+            </app-todo-item>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
 </section>

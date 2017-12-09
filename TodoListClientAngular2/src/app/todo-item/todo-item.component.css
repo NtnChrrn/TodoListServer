@@ -8,18 +8,18 @@ td.columnNumber{
   width: 20px;
   height: 25px;
   text-align: center;
-  border-bottom: solid 1px black;
+  /*border-bottom: solid 1px black;*/
 
 }
 
 .columnCheck{
   width: 40px;
   text-align: center;
-  border-bottom: solid 1px black;
+  /*border-bottom: solid 1px black;*/
 }
 .columnText{
   width: 50%;
-  border-bottom: solid 1px black;
+  /*border-bottom: solid 1px black;*/
 }
 .comment{
   height: 30px;

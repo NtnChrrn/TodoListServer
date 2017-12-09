@@ -21,21 +21,18 @@ h3{
 }
 /* ================ tableItemDetails ========= */
 #tableItemDetails{
-  width: 80%;
+  width: 50%;
   margin: auto;
-}
-.thTableItemDetails {
-  background-color: white;
 }
 /*
 .columnAdd{
   background-color: #4CAF50;
 }*/
-.columnAdd{
+/*.columnAdd{
   border: solid 1px black;
   border-bottom: solid 2px black;
   padding:5px 0px 5px 5px;
-}
+}*/
 .trTableItemDetails{
   vertical-align: middle;
 }
@@ -67,10 +64,6 @@ a{
   color: black;
 }
 
-.addItem{
-  background-color: white;
-}
-
 .newItem {
   margin-left: 20%;
   width: 45%;
@@ -94,4 +87,13 @@ a{
 
 .addBtn:hover {
   background-color: #bbb;
+}
+
+.whiteBackground{
+  background-color: white;
+}
+
+.marginBottom{
+  margin-bottom: 30px;
+
 }
