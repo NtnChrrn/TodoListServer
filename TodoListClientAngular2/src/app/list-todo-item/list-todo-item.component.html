@@ -1,45 +1,46 @@
 <section id="list-todo-item"  [style.backgroundColor]="getColor()">
-  <input id="rechercheFiltre" type="text" placeholder="Rechercher" (input)="filtrerTache();" />
-  <a [routerLink]="['/lists']">
-    <i class="fa fa-chevron-circle-left fa-3x"></i>
-  </a>
-  <h3 id="title">
-    {{getName()}}
-  </h3>
-
-  <!--<div class="container">
-    <div class="col-lg-12 addItem">
-      <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
-        <input type="text" #newItemLabel placeholder="Saisir une nouvelle tâche..."/>
-      </form>
-      <button (click)="createItem(newItemLabel.value); newItemLabel.value=''; newItemLabel.focus()" class="btn btn-default btn-sm"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Ajouter tâche</button>
+  <div class="container">
+    <div class="row">
+      <!-- btn return lists -->
+      <div class="col-lg-6">
+        <a [routerLink]="['/lists']"><i class="fa fa-chevron-circle-left fa-3x"></i></a>
+      </div>
+      <!-- recherche -->
+      <div class="col-lg-6">
+        <input id="rechercheFiltre" type="text" placeholder="Rechercher" (change)="filtrerTache();" />
+      </div>
     </div>
-  </div>-->
 
-  <table id="tableItemDetails"> <!--class="container"-->
-    <th class="thTableItemDetails">
-     <tr>
-       <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
-         <input type="text" #newItemLabel placeholder="Saisir une nouvelle tâche..."/>
-       </form>
-       <button (click)="createItem(newItemLabel.value); newItemLabel.value=''; newItemLabel.focus()" class="btn btn-default btn-sm"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Ajouter tâche</button>
+    <!-- titre liste -->
+    <div class="row addItem">
+      <div class="col-lg-12 text-center">
+        <h3 id="title">{{getName()}}</h3>
+      </div>
+    </div>
 
-     </tr>
-    </th>
-    <tbody pDroppable="tache">
-      <tr *ngFor="let item of getItems(); let i = index" class="trTableItemDetails" >
-          <app-todo-item
-                       pDraggable="tache"
-                       [clock]  = "item.clock"
-                       [item]   = "item"
-                       [listId] = "list.id"
-                       [index]  = "i"
-                       [color]="getColor()">
-          </app-todo-item>
-      </tr>
+    <!-- form add item -->
+    <div class="row addItem">
+      <div class="col-lg-12">
+        <form (ngSubmit)="createItem(newItemLabel.value); newItemLabel.value=''">
+          <input type="text" #newItemLabel placeholder="Saisir une nouvelle tâche..." class="newItem"/>
+        </form>
+        <button (click)="createItem(newItemLabel.value); newItemLabel.value=''; newItemLabel.focus()" class="addBtn"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Ajouter tâche</button>
+      </div>
+    </div>
+  </div>
+
+  <table id="tableItemDetails">
+    <tbody >
+    <tr *ngFor="let item of getItems(); let i = index" class="trTableItemDetails" >
+      <app-todo-item
+        [clock]  = "item.clock"
+        [item]   = "item"
+        [listId] = "list.id"
+        [index]  = "i"
+        [color]="getColor()">
+      </app-todo-item>
+    </tr>
     </tbody>
-    
+
   </table>
 </section>
-
-

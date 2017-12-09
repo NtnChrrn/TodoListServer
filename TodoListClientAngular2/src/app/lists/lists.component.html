@@ -1,16 +1,20 @@
 <section class="form-add-list container">
-  <div class="col-lg-3">
-    <form class='inl'(ngSubmit)="createList(newListName.value); newListName.value=''">
-      <input type="text" #newListName placeholder="Saisir une nouvelle liste ..."/>
-    </form>
-    <button (click)="createList(newListName.value); newListName.value=''; newItemLabel.focus()" class="btn btn-default btn-sm"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Ajouter</button>
-  </div>
-  <div class="col-lg-9">
-    <ul class="points">
-      <li><span class="point yellow"></span>tâches non terminées</li>
-      <li><span class="point red"></span>tâches échouées</li>
-      <li><span class="point green"></span>tâches réussites</li>
-    </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <form (ngSubmit)="createList(newListName.value); newListName.value=''">
+          <input type="text" #newListName placeholder="Saisir une nouvelle liste ..."/>
+        </form>
+        <button (click)="createList(newListName.value); newListName.value=''; newItemLabel.focus()" class="btn btn-default btn-sm addBtn"><i class="fa fa-plus fa-lg" aria-hidden="true"></i> Ajouter</button>
+      </div>
+      <div class="col-lg-6">
+        <ul class="points">
+          <li><span class="point yellow"></span>tâches non terminées</li>
+          <li><span class="point red"></span>tâches échouées</li>
+          <li><span class="point green"></span>tâches réussites</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 <!--<section class="container">
