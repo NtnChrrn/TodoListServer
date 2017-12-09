@@ -116,7 +116,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
 
   confirm() {
-    console.log("salut");
     this.confirmationService.confirm({
       message: 'Voulez-vous supprimer cet item ?',
       header: 'Confirmation de suppression',

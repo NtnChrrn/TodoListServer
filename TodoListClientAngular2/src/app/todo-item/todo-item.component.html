@@ -1,4 +1,4 @@
-<section (click)="display=true"
+<section (click)="display=true" (mouseleave)="mouseOnButton = false;" (mouseover)="mouseOnButton = true;"
   xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
   <td class="columnNumber" [ngStyle]="colorLigne()">
@@ -23,7 +23,7 @@
       </p-footer>
     </p-confirmDialog>
     <!--<i class="fa fa-trash-o fa-3" aria-hidden="true" (click)="confirm()"></i>-->
-    <button class="buttonTest" (mouseleave)="mouseOnButton = false;" (mouseover)="mouseOnButton = true;" [ngClass]="{'activeButton': mouseOnButton}" (click)="confirm()" pButton icon="fa fa-trash-o fa-3" label="Delete"></button>
+    <button class="buttonTest" [ngClass]="{'activeButton': mouseOnButton}" (click)="confirm()" pButton icon="fa fa-trash-o fa-3" label="Delete"></button>
   </td>
   <p-sidebar [(visible)]="display" position="right" >
   <div class="sidebar" [ngStyle]="colorLigne()">
