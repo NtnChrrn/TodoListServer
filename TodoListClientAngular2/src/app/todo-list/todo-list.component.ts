@@ -1,25 +1,35 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {TodoListWithItems, TodoListService} from "../todo-list.service";
+import {ConfirmationService} from 'primeng/primeng';
 
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: ['./todo-list.component.css'],
+  providers: [ConfirmationService]
 })
 export class TodoListComponent implements OnInit {
   @Input() list: TodoListWithItems;
   @Input() clock: number;
   public color: string;
 
-  constructor(private todoListService: TodoListService) {}
+  constructor(private todoListService: TodoListService, private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
     this.color = this.getColor();
   }
 
   delete() {
-    this.todoListService.SERVER_DELETE_LIST(this.list.id);
+    this.confirmationService.confirm({
+      message: 'Voulez-vous supprimer cette liste ?',
+      header: 'Confirmation de suppression',
+      icon: 'fa fa-trash',
+      accept: () => {
+        this.todoListService.SERVER_DELETE_LIST(this.list.id);
+      },
+
+    });
   }
 
   getColor(): string {
@@ -72,4 +82,5 @@ export class TodoListComponent implements OnInit {
   getColors(){
     return this.todoListService.getColors();
   }
+
 }
