@@ -1,7 +1,7 @@
 <section (mouseleave)="mouseOnButton = false;" (mouseover)="mouseOnButton = true;"
   xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
   <!-- columns table -->
-  <td class="colorDate" [ngStyle]="colorBorder()"></td>
+  <td class="colorDate" [ngStyle]="colorBorder()"><i class="fa fa-calendar" aria-hidden="true"></i></td>
   <td class="columnNumber">{{index+1}}</td>
   <td class="columnCheck">
           <p-triStateCheckbox [ngModel]="item.checked"
@@ -9,7 +9,8 @@
           </p-triStateCheckbox>
   </td>
   <td class="columnText">{{item.label}}</td>
-  <td class="columnDate">A faire avant : {{item.data.dateEnd}}</td>
+  <!--<td [ngStyle]="showDate()"><i class="fa fa-calendar" aria-hidden="true"></i></td>-->
+  <!--<td class="columnDate">A faire avant : {{item.data.dateEnd}}</td>-->
   <td class="columnDelete" >
     <p-confirmDialog #cd>
       <p-footer>

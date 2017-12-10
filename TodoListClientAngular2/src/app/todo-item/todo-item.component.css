@@ -17,7 +17,7 @@ td{
 }
 
 td.colorDate{
-  width:5px;
+  /*width:5px;*/
 }
 
 .columnCheck{
@@ -35,8 +35,8 @@ td.colorDate{
 }
 
 .columnDelete{
-  float: right;
-  margin-top: -15px;
+  /*float: right;
+  margin-top: -15px;*/
 }
 .fa-trash-o{
   cursor : pointer;
