@@ -49,8 +49,7 @@ h3{
 
 #rechercheFiltre{
   float: right;
-  margin-top:10px;
-  margin-right:10%;
+  font-size: 16px;
 }
 
 h3#title{
