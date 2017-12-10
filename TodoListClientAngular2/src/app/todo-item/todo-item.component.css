@@ -34,8 +34,9 @@ td{
   /*border-bottom: solid 1px black;*/
 }
 .comment{
-  height: 30px;
-  margin-left:50px;
+  height: 150px;
+  width: 250px;
+  resize: none;
 }
 
 .colorDate{

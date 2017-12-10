@@ -25,10 +25,11 @@
   <!-- sidebar bar -->
   <p-sidebar [(visible)]="display" position="right" >
     <div class="sidebar">
-      <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">{{item.label}}</label>
+      <label *ngIf="!isEditingLabel()">{{item.label}}</label>
       <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
         <input #newLabel type="text" [value]="item.label"/>
       </form>
+      <p>A faire avant le :</p>
       <p-calendar    dateFormat="dd/mm/yy"
                      [ngModel]="getDateEnd()"
                      (onSelect)="setDateEnd($event)"
@@ -39,8 +40,11 @@
       </p-calendar>
       <p>Commentaire :</p>
       <form>
-        <textarea [(ngModel)]="item.data.comment" (input)="updateComment()" name="comment" size="35"></textarea>
+        <textarea class="comment" [(ngModel)]="item.data.comment" (input)="updateComment()" name="comment" size="35"></textarea>
       </form>
+      <button *ngIf="!isEditingLabel()" (click)="editLabel(true)" pButton icon="fa fa-pencil" label="Modifier"></button>
+      <button *ngIf="isEditingLabel()" (click)="editLabel(false)" pButton icon="fa fa-floppy-o" label="Sauvegarder" class="ui-button-success"></button>
+      <button *ngIf="isEditingLabel()" (click)="editLabel(false)" pButton icon="fa fa-close" label="Annuler" class="ui-button-danger"></button>
     </div>
   </p-sidebar>
 </section>
