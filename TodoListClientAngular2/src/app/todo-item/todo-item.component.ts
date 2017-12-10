@@ -36,10 +36,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
     let color;
     let today : Date = new Date();
 
-    if(this.getDateEnd()==null){
-      color = "white";
-    }
-
     if(this.getDateEnd()!=null){
       color = "black";
     }
@@ -63,7 +59,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
     return color;
   }
 
-  colorBorder(){
+  colorDate(){
     let styles = {
       'color': this.colorLigne()
     }
@@ -161,5 +157,9 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
   getColor(): string {
     return this.color;
+  }
+
+  haveDate(): boolean {
+    if (this.getDateEnd() == null) {return false; } else {return true; }
   }
 }

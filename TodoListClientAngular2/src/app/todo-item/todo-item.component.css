@@ -16,6 +16,14 @@ td{
   vertical-align: middle;
 }
 
+.ligne{
+  padding: 5px;
+}
+
+.ligne:hover{
+  background-color: #DBDBDB;
+}
+
 .columnCheck{
   width: 40px;
   text-align: center;
@@ -28,6 +36,10 @@ td{
 .comment{
   height: 30px;
   margin-left:50px;
+}
+
+.colorDate{
+  width: 15px;
 }
 
 .columnDelete{

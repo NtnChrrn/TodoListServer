@@ -1,7 +1,7 @@
-<section (mouseleave)="mouseOnButton = false;" (mouseover)="mouseOnButton = true;"
+<section class="ligne" (mouseleave)="mouseOnButton = false;" (mouseover)="mouseOnButton = true;"
   xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
   <!-- columns table -->
-  <td class="colorDate" [ngStyle]="colorBorder()"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+  <td class="colorDate" [ngStyle]="colorDate()"><i class="fa fa-calendar" aria-hidden="true" *ngIf="haveDate()"></i></td>
   <td class="columnNumber">{{index+1}}</td>
   <td class="columnCheck">
           <p-triStateCheckbox [ngModel]="item.checked"
