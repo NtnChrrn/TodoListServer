@@ -12,6 +12,10 @@ td.columnNumber{
 
 }
 
+td{
+  vertical-align: middle;
+}
+
 td.colorDate{
   width:5px;
 }
