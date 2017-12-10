@@ -1,3 +1,4 @@
+<!-- add list form & task caption -->
 <section class="form-add-list container">
   <div class="container">
     <div class="row">
@@ -17,9 +18,8 @@
     </div>
   </div>
 </section>
-<!--<section class="container">
-  <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock" class="col-lg-3"></app-todo-list>
-</section>-->
+
+<!-- display lists -->
 <section>
   <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock"></app-todo-list>
 </section>
