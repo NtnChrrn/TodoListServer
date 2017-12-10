@@ -9,7 +9,7 @@
     <p-confirmDialog #cd>
     <p-footer>
       <button type="button" pButton icon="fa-close" label="Non" (click)="cd.reject()"></button>
-      <button type="button" pButton icon="fa-check" label="Oui" (click)="cd.accept()"></button>
+      <button type="button" class="ui-button-danger" pButton icon="fa-check" label="Oui" (click)="cd.accept()"></button>
     </p-footer>
   </p-confirmDialog>
     <i class="fa fa-trash-o fa-lg hvr icons-list" (click)="delete()" title="Supprimer la liste"></i>

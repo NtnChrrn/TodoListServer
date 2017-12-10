@@ -20,12 +20,12 @@
     <p-confirmDialog #cd>
       <p-footer>
       <button type="button" pButton icon="fa-close" label="Non" (click)="cd.reject()"></button>
-      <button type="button" pButton icon="fa-check" label="Oui" (click)="cd.accept()"></button>
+      <button type="button" class="ui-button-danger" pButton icon="fa-check" label="Oui" (click)="cd.accept()"></button>
       </p-footer>
     </p-confirmDialog>
     <!--<i class="fa fa-trash-o fa-3" aria-hidden="true" (click)="confirm()"></i>-->
     <button class="buttonTest" [ngClass]="{'activeButton': mouseOnButton}" (click)="display=true" pButton icon="fa fa-eye fa-3" label="Détails"></button>
-    <button class="buttonTest" [ngClass]="{'activeButton': mouseOnButton}" (click)="confirm()" pButton icon="fa fa-trash-o fa-3" label="Delete"></button>
+    <button class="buttonTest ui-button-danger" [ngClass]="{'activeButton': mouseOnButton}" (click)="confirm()" pButton icon="fa fa-trash-o fa-3" label="Delete"></button>
   </td>
   <p-sidebar [(visible)]="display" position="right" >
   <div class="sidebar">
