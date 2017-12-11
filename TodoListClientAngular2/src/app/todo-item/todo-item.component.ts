@@ -111,7 +111,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
     const date: Date = this.getDateEndDateFormat();
 
     if (!this.getDateEndDateFormat()) {return null; }
-    return tab_jour[date.getDay()] + " " + date.getDate() + " " + tab_mois[date.getMonth()];
+    return tab_jour[date.getDay()] + " " + date.getDate() + " " + tab_mois[date.getMonth()] + ", " + date.getHours() + "h" + date.getMinutes();
   }
 
 

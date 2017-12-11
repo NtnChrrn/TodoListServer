@@ -1,7 +1,7 @@
 <section class="ligne"
          (mouseleave)="mouseOnButton = false;"
          (mouseover)="mouseOnButton = true;"
-          xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+          xmlns="http://www.w3.org/1999/html"
          (dblclick)="display=true">
   <!-- columns table -->
   <td class="colorDate" [ngStyle]="colorDate()"><i class="fa fa-calendar" aria-hidden="true" *ngIf="haveDate()"></i></td>
@@ -33,11 +33,12 @@
                       matTooltipPosition="below">{{getEdition()}}</mat-slide-toggle>
     <HR>
     <div class="sidebar">
-      <label *ngIf="!isEditingLabel()">{{item.label}}</label>
+      <h1 *ngIf="!isEditingLabel()">{{item.label}}</h1>
       <form  *ngIf="isEditingLabel()" (input)="setLabel(newLabel.value)" >
         <input #newLabel type="text"
                [value]="item.label"
-               [disabled]="!editingLabel"/>
+               [disabled]="!editingLabel"
+                />
       </form>
       <p matTooltip="Tooltip!"
          matTooltipPosition="below">A faire avant le :</p>
