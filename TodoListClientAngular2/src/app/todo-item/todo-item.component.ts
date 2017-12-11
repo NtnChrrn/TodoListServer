@@ -127,13 +127,11 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
 
   check(checked: any) {
-    if(checked == null){
+    if (checked === null) {
       this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, true);
-    }
-    else if(checked == false){
+    }else if (checked === false) {
       this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, null);
-    }
-    else if(checked == true){
+    }else if (checked === true) {
       this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, false);
     }
   }
@@ -148,14 +146,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
       },
 
     });
-
-
-  }
-
-  isExistigComment() {
-    if (this.item.data['comment'] === null) { return false; }
-    if (this.item.data['comment'] === '') { return false; }
-    return true;
   }
 
   toggleComment() {
@@ -174,6 +164,14 @@ export class TodoItemComponent implements OnInit, OnChanges {
   haveDate(): boolean {
     if (this.getDateEnd() == null) { return false;
     }else { return true; }
+  }
+
+  haveComment(): boolean {
+    if (this.item.data['comment'] == null || this.item.data['comment'] === '') {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   getEdition() {

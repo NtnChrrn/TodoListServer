@@ -40,7 +40,12 @@ td{
 }
 
 .colorDate{
+  width: 20px;
+}
+
+.columnComment{
   width: 15px;
+
 }
 
 .columnDelete{
