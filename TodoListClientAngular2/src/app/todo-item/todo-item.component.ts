@@ -20,10 +20,10 @@ export class TodoItemComponent implements OnInit, OnChanges {
   @Input() edit:    boolean;
   @Input() color:   string;
 
-  private checked:      any;
-  private showComment = false;
-  private editingLabel = false;
-  public  mouseOnButton = false;
+  private checked:  any;
+  private showComment     = false;
+  private editingLabel    = false;
+  public  mouseOnButton   = false;
 
   constructor(private todoListService: TodoListService,
               private confirmationService: ConfirmationService) { }
@@ -86,7 +86,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   /* get Date end of item in string format
   *  return string : 15/11/2017 17:15
   */
-  getDateEnd(){
+  getDateEnd() {
     return this.item.data['dateEnd'] ? this.item.data['dateEnd'].toString() : null;
   }
 
@@ -94,15 +94,27 @@ export class TodoItemComponent implements OnInit, OnChanges {
   *  dateEnd: 15/11/2017 17:15
   *  return Date : 2017-11-15T17:15:00
   */
-  getDateEndDateFormat(): Date{
-    if(this.item.data['dateEnd']==null)return null;
+  getDateEndDateFormat(): Date {
+    if (!this.item.data['dateEnd']) {return null; }
 
-    return new Date(this.item.data['dateEnd'].substring(6,10)+
-              '-' + this.item.data['dateEnd'].substring(3,5) +
-              '-' + this.item.data['dateEnd'].substring(0,2) +
-              'T' + this.item.data['dateEnd'].substring(11,13) +
-              ':' + this.item.data['dateEnd'].substring(14,16) +':00');
+    return new Date(this.item.data['dateEnd'].substring(6, 10) +
+              '-' + this.item.data['dateEnd'].substring(3, 5) +
+              '-' + this.item.data['dateEnd'].substring(0, 2) +
+              'T' + this.item.data['dateEnd'].substring(11, 13) +
+              ':' + this.item.data['dateEnd'].substring(14, 16) + ':00');
   }
+
+  dateToString(): string {
+    const tab_jour = new Array("Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+    const tab_mois = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+                                "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+    const date: Date = this.getDateEndDateFormat();
+
+    if (!this.getDateEndDateFormat()) {return null; }
+    return tab_jour[date.getDay()] + " " + date.getDate() + " " + tab_mois[date.getMonth()];
+  }
+
+
   isEditingLabel(): boolean {
     return this.editingLabel;
   }
@@ -156,9 +168,9 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   getEdition() {
     if (this.editingLabel === true) {
-      return "éditer";
+      return "Editer";
     }else {
-      return "visualiser";
+      return "Visualiser";
     }
   }
 }

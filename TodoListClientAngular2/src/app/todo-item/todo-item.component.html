@@ -34,17 +34,19 @@
     <HR>
     <div class="sidebar">
       <label *ngIf="!isEditingLabel()">{{item.label}}</label>
-      <form *ngIf="isEditingLabel()" (input)="setLabel(newLabel.value)" >
+      <form  *ngIf="isEditingLabel()" (input)="setLabel(newLabel.value)" >
         <input #newLabel type="text"
                [value]="item.label"
                [disabled]="!editingLabel"/>
       </form>
       <p matTooltip="Tooltip!"
          matTooltipPosition="below">A faire avant le :</p>
-      <p-calendar    dateFormat="dd/mm/yy"
+      <label *ngIf="!isEditingLabel()">{{dateToString()}}</label>
+
+      <p-calendar    *ngIf="isEditingLabel()"
+                     dateFormat="dd/mm/yy"
                      [ngModel]="getDateEnd()"
                      (onSelect)="setDateEnd($event)"
-                     [disabled]="!editingLabel"
                      [showTime]="true"
                      showButtonBar="true"
                      [showIcon]="true"
