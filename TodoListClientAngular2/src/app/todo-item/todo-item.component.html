@@ -4,8 +4,9 @@
           xmlns="http://www.w3.org/1999/html"
          (dblclick)="display=true">
   <!-- columns table -->
+  <td class="columnComment"><i class="fa fa-comment" aria-hidden="true" *ngIf="haveComment()"></i></td>
   <td class="colorDate" [ngStyle]="colorDate()"><i class="fa fa-calendar" aria-hidden="true" *ngIf="haveDate()"></i></td>
-  <td class="columnNumber">{{index+1}}</td>
+  <!--<td class="columnNumber">{{index+1}}</td>-->
   <td class="columnCheck">
           <p-triStateCheckbox [ngModel]="item.checked"
                               (ngModelChange)="check(item.checked)">

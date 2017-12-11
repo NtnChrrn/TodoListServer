@@ -140,15 +140,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
       },
 
     });
-
-
   }
 
-  isExistigComment() {
-    if (this.item.data['comment'] === null) { return false; }
-    if (this.item.data['comment'] === '') { return false; }
-    return true;
-  }
   toggleComment() {
     if (this.showComment === true) { this.showComment = false;
     }else { this.showComment = true; }
@@ -164,6 +157,14 @@ export class TodoItemComponent implements OnInit, OnChanges {
   haveDate(): boolean {
     if (this.getDateEnd() == null) { return false;
     }else { return true; }
+  }
+
+  haveComment(): boolean {
+    if (this.item.data['comment'] == null || this.item.data['comment'] === '') {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   getEdition() {
