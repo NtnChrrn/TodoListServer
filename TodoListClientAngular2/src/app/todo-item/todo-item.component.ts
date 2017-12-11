@@ -2,9 +2,6 @@ import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChan
 import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
 import {ConfirmationService} from 'primeng/primeng';
 
-
-
-
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
@@ -111,9 +108,11 @@ export class TodoItemComponent implements OnInit, OnChanges {
     const date: Date = this.getDateEndDateFormat();
 
     if (!this.getDateEndDateFormat()) {return null; }
-    return tab_jour[date.getDay()] + " " + date.getDate() + " " + tab_mois[date.getMonth()] + ", " + date.getHours() + "h" + date.getMinutes();
+    return tab_jour[date.getDay()] + " "
+      + date.getDate()
+      + " " + tab_mois[date.getMonth()]
+      + ", " + date.getHours() + "h" + date.getMinutes();
   }
-
 
   isEditingLabel(): boolean {
     return this.editingLabel;
@@ -126,8 +125,17 @@ export class TodoItemComponent implements OnInit, OnChanges {
   editLabel2() {
     this.editingLabel = !this.editingLabel;
   }
+
   check(checked: any) {
-    this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, this.checked);
+    if(checked == null){
+      this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, true);
+    }
+    else if(checked == false){
+      this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, null);
+    }
+    else if(checked == true){
+      this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, false);
+    }
   }
 
   confirm() {
@@ -149,6 +157,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
     if (this.item.data['comment'] === '') { return false; }
     return true;
   }
+
   toggleComment() {
     if (this.showComment === true) { this.showComment = false;
     }else { this.showComment = true; }
@@ -157,6 +166,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   updateComment() {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: this.item.data['comment']});
   }
+
   getColor(): string {
     return this.color;
   }
