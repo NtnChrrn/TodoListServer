@@ -83,4 +83,11 @@ export class TodoListComponent implements OnInit {
     return this.todoListService.getColors();
   }
 
+  duplicateList(name, items) {
+    const id = this.todoListService.SERVER_CREATE_NEW_LIST(name);
+    for (const entry of items) {
+      this.todoListService.SERVER_CREATE_ITEM(id.valueOf(), entry.label, entry.checked, entry.data);
+    }
+  }
+
 }
