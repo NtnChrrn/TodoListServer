@@ -33,8 +33,12 @@ export class TodoItemComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) { }
 
   colorLigne(){
-    let color = this.color;
+    let color;
     let today : Date = new Date();
+
+    if(this.getDateEnd()!=null){
+      color = "black";
+    }
 
     // if date limit is out
     if(this.getDateEnd()!=null && this.getDateEndDateFormat() < today){
@@ -49,12 +53,18 @@ export class TodoItemComponent implements OnInit, OnChanges {
       && this.getDateEndDateFormat() > today){
       color="#e67e22";
     }
+    /*let styles = {
+      'border-left': 'solid 5px' + color
+    }*/
+    return color;
+  }
+
+  colorDate(){
     let styles = {
-      'background-color': color
+      'color': this.colorLigne()
     }
     return styles;
   }
-
 
 
   /* Function to add zero if neccesery
@@ -116,7 +126,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
 
   confirm() {
-    console.log("salut");
     this.confirmationService.confirm({
       message: 'Voulez-vous supprimer cet item ?',
       header: 'Confirmation de suppression',
@@ -148,5 +157,9 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
   getColor(): string {
     return this.color;
+  }
+
+  haveDate(): boolean {
+    if (this.getDateEnd() == null) {return false; } else {return true; }
   }
 }

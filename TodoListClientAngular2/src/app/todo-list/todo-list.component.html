@@ -3,9 +3,16 @@
   --><span class="tache red"    title="tâches échouées à {{getPercentageOfFailed().toFixed(0)}} %"          [style.width.%]="getPercentageOfFailed().toFixed(1)" ></span><!--
   --><span class="tache green"  title="tâches réalisées à {{getPercentageOfRealised().toFixed(0)}} %"       [style.width.%]="getPercentageOfRealised().toFixed(1)" ></span>
   </div>
+
 <section class="root" [style.backgroundColor]="getColor()">
   <span class="group-button">
     <i class="fa fa-paint-brush icons-list" (click)="op.toggle($event)" title="Changer la couleur de la liste"></i>
+    <p-confirmDialog #cd>
+      <p-footer>
+        <button type="button" pButton icon="fa-close" label="Non" (click)="cd.reject()"></button>
+        <button type="button" class="ui-button-danger" pButton icon="fa-check" label="Oui" (click)="cd.accept()"></button>
+      </p-footer>
+    </p-confirmDialog>
     <i class="fa fa-trash-o fa-lg hvr icons-list" (click)="delete()" title="Supprimer la liste"></i>
     <p-overlayPanel #op>
       <button mat-mini-fab *ngFor="let c of this.getColors();" [style.backgroundColor]="c.color" title="{{c.name}}" class="btnColor" (click)="setColor(c.color)"></button>
@@ -13,9 +20,6 @@
   </span>
   <br/><br/>
   <h3>
-    <a [routerLink]="['/lists-detail', list.id]" class="titre-tache">
-        {{list.name}}
-    </a>
+    <a [routerLink]="['/lists-detail', list.id]" class="titre-tache">{{list.name}}</a>
   </h3>
 </section>
-

@@ -1,51 +1,50 @@
-<section xmlns="http://www.w3.org/1999/html" >
-
-  <td class="columnNumber" [ngStyle]="colorLigne()">
-          {{index+1}}
-  </td>
-  <td class="columnCheck" [ngStyle]="colorLigne()">
+<section class="ligne" (mouseleave)="mouseOnButton = false;" (mouseover)="mouseOnButton = true;"
+  xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <!-- columns table -->
+  <td class="colorDate" [ngStyle]="colorDate()"><i class="fa fa-calendar" aria-hidden="true" *ngIf="haveDate()"></i></td>
+  <td class="columnNumber">{{index+1}}</td>
+  <td class="columnCheck">
           <p-triStateCheckbox [ngModel]="item.checked"
                               (ngModelChange)="check(item.checked)">
           </p-triStateCheckbox>
   </td>
-  <td class="columnText" [ngStyle]="colorLigne()" (click)="display=true">
-          <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
-              {{item.label}}
-          </label>
-          <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
-            <input #newLabel type="text" [value]="item.label"/>
-          </form>
-  </td>
-  <td class="columnDate" [ngStyle]="colorLigne()">
-    <p-calendar    dateFormat="dd/mm/yy"
-                   [ngModel]="getDateEnd()"
-                   (onSelect)="setDateEnd($event)"
-                   [showTime]="true"
-                   showButtonBar="true"
-                   [showIcon]="true"
-                   title="Date de fin de la tâche" ></p-calendar>
-  </td>
+  <td class="columnText">{{item.label}}</td>
+  <!--<td class="columnDate">A faire avant : {{item.data.dateEnd}}</td>-->
   <td class="columnDelete" >
     <p-confirmDialog #cd>
       <p-footer>
       <button type="button" pButton icon="fa-close" label="Non" (click)="cd.reject()"></button>
-      <button type="button" pButton icon="fa-check" label="Oui" (click)="cd.accept()"></button>
+      <button type="button" class="ui-button-danger" pButton icon="fa-check" label="Oui" (click)="cd.accept()"></button>
       </p-footer>
     </p-confirmDialog>
     <!--<i class="fa fa-trash-o fa-3" aria-hidden="true" (click)="confirm()"></i>-->
-    <button class="buttonTest" (mouseleave)="mouseOnButton = false;" (mouseover)="mouseOnButton = true;" [ngClass]="{'activeButton': mouseOnButton}" (click)="confirm()" pButton icon="fa fa-trash-o fa-3" label="Delete"></button>
+    <button class="buttonTest" [ngClass]="{'activeButton': mouseOnButton}" (click)="display=true" pButton icon="fa fa-eye fa-3" label="Détails"></button>
+    <button class="buttonTest ui-button-danger" [ngClass]="{'activeButton': mouseOnButton}" (click)="confirm()" pButton icon="fa fa-trash-o fa-3" label="Supprimer"></button>
   </td>
+
+  <!-- sidebar bar -->
   <p-sidebar [(visible)]="display" position="right" >
-  <div class="sidebar" [ngStyle]="colorLigne()">
-    <p>{{item.label}}
-      </p>
-    <p>
-      A faire avant : {{item.data.dateEnd}}
-    </p>
-    Commentaire :
-    <form>
-      <textarea [(ngModel)]="item.data.comment" (input)="updateComment()" name="comment" size="35"></textarea>
-    </form>
-  </div>
+    <div class="sidebar">
+      <label *ngIf="!isEditingLabel()">{{item.label}}</label>
+      <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
+        <input #newLabel type="text" [value]="item.label"/>
+      </form>
+      <p>A faire avant le :</p>
+      <p-calendar    dateFormat="dd/mm/yy"
+                     [ngModel]="getDateEnd()"
+                     (onSelect)="setDateEnd($event)"
+                     [showTime]="true"
+                     showButtonBar="true"
+                     [showIcon]="true"
+                     title="Date de fin de la tâche" >
+      </p-calendar>
+      <p>Commentaire :</p>
+      <form>
+        <textarea class="comment" [(ngModel)]="item.data.comment" (input)="updateComment()" name="comment" size="35"></textarea>
+      </form>
+      <button *ngIf="!isEditingLabel()" (click)="editLabel(true)" pButton icon="fa fa-pencil" label="Modifier"></button>
+      <button *ngIf="isEditingLabel()" (click)="editLabel(false)" pButton icon="fa fa-floppy-o" label="Sauvegarder" class="ui-button-success"></button>
+      <button *ngIf="isEditingLabel()" (click)="editLabel(false)" pButton icon="fa fa-close" label="Annuler" class="ui-button-danger"></button>
+    </div>
   </p-sidebar>
 </section>

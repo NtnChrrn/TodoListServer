@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import {ButtonModule} from 'primeng/primeng';
 import {createEmptyStateSnapshot} from "@angular/router/src/router_state";
 import {forEach} from "@angular/router/src/utils/collection";
+import {DragDropModule} from 'primeng/primeng';
 
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 @Component({
