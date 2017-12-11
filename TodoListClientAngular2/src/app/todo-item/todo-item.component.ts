@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ListID, ItemJSON, TodoListService}  from "../todo-list.service";
+import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
 import {ConfirmationService} from 'primeng/primeng';
 
 
@@ -18,17 +18,17 @@ export class TodoItemComponent implements OnInit, OnChanges {
   @Input() clock:   number;
   @Input() index:   number;
   @Input() edit:    boolean;
-  @Input() color:    string;
+  @Input() color:   string;
 
-  private checked : any;
-  private showComment : boolean = false;
+  private checked:      any;
+  private showComment = false;
   private editingLabel = false;
-  mouseOnButton = false;
+  public  mouseOnButton = false;
 
-  constructor(private todoListService: TodoListService,private confirmationService: ConfirmationService) { }
+  constructor(private todoListService: TodoListService,
+              private confirmationService: ConfirmationService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) { }
 
@@ -71,7 +71,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   *  date any: 1
   *  return string: 01
   */
-  addZero(date : any): string{
+  addZero(date: any): string{
     if(date<10)return '0' + date;
     else return date;
   }
@@ -111,19 +111,12 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.editingLabel = edit;
   }
 
+  editLabel2() {
+    this.editingLabel = !this.editingLabel;
+  }
   check(checked: any) {
-    if(checked == null){
-      this.checked = true;
-    }
-    else if(checked == false){
-      this.checked = null;
-    }
-    else if(checked == true){
-      this.checked = false;
-    }
     this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, this.checked);
   }
-
 
   confirm() {
     this.confirmationService.confirm({
@@ -139,17 +132,14 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   }
 
-  isExistigComment(){
-    if (this.item.data['comment']==null) return false;
-    if (this.item.data['comment']=='') return false;
+  isExistigComment() {
+    if (this.item.data['comment'] === null) { return false; }
+    if (this.item.data['comment'] === '') { return false; }
     return true;
   }
-  toggleComment(){
-    if(this.showComment == true){
-      this.showComment = false;
-    }else {
-      this.showComment = true;
-    }
+  toggleComment() {
+    if (this.showComment === true) { this.showComment = false;
+    }else { this.showComment = true; }
   }
 
   updateComment() {
@@ -160,6 +150,15 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
 
   haveDate(): boolean {
-    if (this.getDateEnd() == null) {return false; } else {return true; }
+    if (this.getDateEnd() == null) { return false;
+    }else { return true; }
+  }
+
+  getEdition() {
+    if (this.editingLabel === true) {
+      return "éditer";
+    }else {
+      return "visualiser";
+    }
   }
 }
