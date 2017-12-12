@@ -40,14 +40,14 @@ export class ListTodoItemComponent implements OnInit {
   }
 
   filtrerTache() {
-    let mot: string;
-    mot = (<HTMLInputElement>document.getElementById("rechercheFiltre")).value;
+    let mot: string = (<HTMLInputElement>document.getElementById("rechercheFiltre")).value;
     let lignes: any;
     lignes = document.getElementsByClassName("trTableItemDetails");
-    let i: number; i = 0;
+    let i: number = 0;
     while (i < lignes.length) {
       lignes.item(i).className = "trTableItemDetails invisible";
-      if (lignes.item(i).innerHTML.indexOf(mot) !== -1) {
+      console.log(lignes.item(i).textContent);
+      if (lignes.item(i).getElementsByClassName("columnText").item(0).textContent.indexOf(mot) !== -1) {
         lignes.item(i).className = "trTableItemDetails visible";
       }
       i++;
