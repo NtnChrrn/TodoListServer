@@ -254,7 +254,7 @@ export class TodoListService {
    ****************************************************************************************************************************************/
   private TODOLISTS_NEW_STATE(msg: TODOLISTS_NEW_STATE): void {
     // Update ItemUIs
-    console.log("TODOLISTS_NEW_STATE:", msg);
+    // console.log("TODOLISTS_NEW_STATE:", msg);
     this.itemsJSON = msg.items.map( itemJSON => {
       const itemUI = this.itemsJSON.find( I => I.id === itemJSON.id ) || itemJSON;
       if (itemUI.clock < itemJSON.clock) {

@@ -4,7 +4,7 @@
           xmlns="http://www.w3.org/1999/html"
          (dblclick)="display=true">
   <!-- columns table -->
-
+  <td class="columnNumber">{{index+1}}</td>
   <td class="colorDate" [ngStyle]="colorDate()"><i class="fa fa-calendar" aria-hidden="true" *ngIf="haveDate()"></i></td>
   <td class="columnComment"><i class="fa fa-comment" aria-hidden="true" *ngIf="haveComment()"></i> </td>
   <!--<td class="columnNumber">{{index+1}}</td>-->
@@ -14,6 +14,7 @@
           </p-triStateCheckbox>
   </td>
   <td class="columnText">{{item.label}}</td>
+  <!--<td class="columnDate">A faire avant : {{item.data.dateEnd}}</td>-->
   <td class="columnDelete" >
     <p-confirmDialog #cd>
       <p-footer>
@@ -44,6 +45,7 @@
       <p matTooltip="Tooltip!"
          matTooltipPosition="below">A faire avant le :</p>
       <label *ngIf="!isEditingLabel()">{{dateToString()}}</label>
+
       <p-calendar    *ngIf="isEditingLabel()"
                      dateFormat="dd/mm/yy"
                      [ngModel]="getDateEnd()"

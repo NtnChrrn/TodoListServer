@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
 import {ConfirmationService} from 'primeng/primeng';
-import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-todo-item',
@@ -23,11 +22,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
   private editingLabel    = false;
   public  mouseOnButton   = false;
 
-  public lastComment: string;
-
   constructor(private todoListService: TodoListService,
-              private confirmationService: ConfirmationService,
-              public snackBar: MatSnackBar) { }
+              private confirmationService: ConfirmationService) { }
 
   ngOnInit() { }
 
@@ -66,7 +62,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }
     return styles;
   }
-
 
   /* Function to add zero if neccesery
   *  date any: 1
@@ -148,6 +143,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
       accept: () => {
         this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
       },
+
     });
   }
 
@@ -157,14 +153,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
 
   updateComment() {
-    // alert(this.todoListService.getList(this.item.id).items[this.item.id].id);
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: this.item.data['comment']});
-    this.snackBar.open("Commentaire enregistré",  'annuler', {
-      duration: 50000,
-    }).onAction().subscribe(() => {
-     /* alert(this.lastComment);
-      this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: this.lastComment});*/
-    });
   }
 
   getColor(): string {
@@ -183,6 +172,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
       return true;
     }
   }
+
   getEdition() {
     if (this.editingLabel === true) {
       return "Editer";

@@ -1,8 +1,8 @@
-  <div class="taches" >
-     <span class="tache yellow" title="tâches non terminées à {{getPercentageOfUnrealised().toFixed(0)}} %" [style.width.%]="getPercentageOfUnrealised().toFixed(1)" ></span><!--
-  --><span class="tache red"    title="tâches échouées à {{getPercentageOfFailed().toFixed(0)}} %"          [style.width.%]="getPercentageOfFailed().toFixed(1)" ></span><!--
-  --><span class="tache green"  title="tâches réalisées à {{getPercentageOfRealised().toFixed(0)}} %"       [style.width.%]="getPercentageOfRealisedFixed()" ></span>
-  </div>
+<div class="taches" >
+   <span class="tache yellow" title="tâches non terminées à {{getPercentageOfUnrealised().toFixed(0)}} %" [style.width.%]="getPercentageOfUnrealised().toFixed(1)" ></span><!--
+--><span class="tache red"    title="tâches échouées à {{getPercentageOfFailed().toFixed(0)}} %"          [style.width.%]="getPercentageOfFailed().toFixed(1)" ></span><!--
+--><span class="tache green"  title="tâches réalisées à {{getPercentageOfRealised().toFixed(0)}} %"       [style.width.%]="getPercentageOfRealisedFixed()" ></span>
+</div>
 
 <section class="root" [style.backgroundColor]="getColor()">
   <span class="group-button">
