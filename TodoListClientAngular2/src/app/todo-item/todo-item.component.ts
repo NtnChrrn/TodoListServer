@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
 import {ConfirmationService} from 'primeng/primeng';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-todo-item',
@@ -23,7 +24,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
   public  mouseOnButton   = false;
 
   constructor(private todoListService: TodoListService,
-              private confirmationService: ConfirmationService) { }
+              private confirmationService: ConfirmationService,
+              public snackBar: MatSnackBar) { }
 
   ngOnInit() { }
 
@@ -154,7 +156,14 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
 
   updateComment() {
+    const lastComment = this.item.data['comment'];
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: this.item.data['comment']});
+    this.snackBar.open("Commentaire enregistré",  'annuler', {
+      duration: 50000,
+    }).onAction().subscribe(() => {
+      this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: lastComment});
+    });
+
   }
 
   getColor(): string {

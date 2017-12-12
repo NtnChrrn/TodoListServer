@@ -29,11 +29,11 @@ export class ListTodoItemComponent implements OnInit {
     this.list = this.todoListService.getList( this.idList);
   }
 
-  getName(){
+  getName() {
     return this.list.name;
   }
 
-  getItems(){
+  getItems() {
      return this.list.items;
   }
 
