@@ -35,10 +35,11 @@
     <HR>
     <div class="sidebar">
       <h1 *ngIf="!isEditingLabel()">{{item.label}}</h1>
-      <form  *ngIf="isEditingLabel()" (input)="setLabel(newLabel.value)" >
+      <form  *ngIf="isEditingLabel()"  >
         <input #newLabel type="text"
-               [value]="item.label"
                [disabled]="!editingLabel"
+               [value]="item.label"
+               (change)="setLabel(newLabel.value)"
                 />
       </form>
       <p matTooltip="Tooltip!"
@@ -48,7 +49,8 @@
       <p-calendar    *ngIf="isEditingLabel()"
                      dateFormat="dd/mm/yy"
                      [ngModel]="getDateEnd()"
-                     (onSelect)="setDateEnd($event)"
+                     (onChange)="setDateEnd($event)"
+                     (onClearClick)="resetDate()"
                      [showTime]="true"
                      showButtonBar="true"
                      [showIcon]="true"

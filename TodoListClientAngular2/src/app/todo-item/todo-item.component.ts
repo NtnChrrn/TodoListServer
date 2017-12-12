@@ -72,6 +72,9 @@ export class TodoItemComponent implements OnInit, OnChanges {
     else return date;
   }
 
+  resetDate():void{
+    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,{dateEnd:null});
+  }
   /* setDate from input date calendar
    */
   setDateEnd(inputDate: any): void {
@@ -92,6 +95,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
   */
   getDateEndDateFormat(): Date {
     if (!this.item.data['dateEnd']) {return null; }
+    if (this.item.data['dateEnd']==null) {return null; }
+
 
     return new Date(this.item.data['dateEnd'].substring(6, 10) +
               '-' + this.item.data['dateEnd'].substring(3, 5) +
@@ -173,11 +178,14 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }
   }
 
+  setLabel(label : string){
+    this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id,label);
+  }
   getEdition() {
     if (this.editingLabel === true) {
-      return "Editer";
-    }else {
       return "Visualiser";
+    }else {
+      return "Editer";
     }
   }
 }
