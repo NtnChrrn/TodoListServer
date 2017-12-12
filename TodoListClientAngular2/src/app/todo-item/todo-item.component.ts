@@ -70,7 +70,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
     return styles;
   }
 
-
   /* Function to add zero if neccesery
   *  date any: 1
   *  return string: 01
@@ -107,6 +106,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
               'T' + this.item.data['dateEnd'].substring(11,13) +
               ':' + this.item.data['dateEnd'].substring(14,16) +':00');
   }
+
   isEditingLabel(): boolean {
     return this.editingLabel;
   }
@@ -128,7 +128,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, this.checked);
   }
 
-
   confirm() {
     this.confirmationService.confirm({
       message: 'Voulez-vous supprimer cet item ?',
@@ -148,6 +147,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
     if (this.item.data['comment']=='') return false;
     return true;
   }
+
   toggleComment(){
     if(this.showComment == true){
       this.showComment = false;
@@ -159,6 +159,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   updateComment() {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: this.item.data['comment']});
   }
+
   getColor(): string {
     return this.color;
   }
