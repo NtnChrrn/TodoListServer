@@ -55,7 +55,13 @@ export class ListTodoItemComponent implements OnInit {
   }
 
   createItem(label: string) {
-    this.todoListService.SERVER_CREATE_ITEM(this.list.id, label, null);
+    if(label){
+      this.todoListService.SERVER_CREATE_ITEM(this.list.id, label, null);
+    }
+    else{
+      console.log("Label null");
+
+    }
   }
 
   getColor(): string {
