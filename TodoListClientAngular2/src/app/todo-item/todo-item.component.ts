@@ -23,6 +23,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
   private editingLabel    = false;
   public  mouseOnButton   = false;
 
+  public lastComment: string;
+
   constructor(private todoListService: TodoListService,
               private confirmationService: ConfirmationService,
               public snackBar: MatSnackBar) { }
@@ -146,7 +148,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
       accept: () => {
         this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
       },
-
     });
   }
 
@@ -156,14 +157,14 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
 
   updateComment() {
-    const lastComment = this.item.data['comment'];
+    // alert(this.todoListService.getList(this.item.id).items[this.item.id].id);
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: this.item.data['comment']});
     this.snackBar.open("Commentaire enregistré",  'annuler', {
       duration: 50000,
     }).onAction().subscribe(() => {
-      this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: lastComment});
+     /* alert(this.lastComment);
+      this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: this.lastComment});*/
     });
-
   }
 
   getColor(): string {
@@ -182,7 +183,6 @@ export class TodoItemComponent implements OnInit, OnChanges {
       return true;
     }
   }
-
   getEdition() {
     if (this.editingLabel === true) {
       return "Editer";

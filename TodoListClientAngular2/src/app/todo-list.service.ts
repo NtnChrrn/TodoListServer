@@ -6,13 +6,13 @@ import {
   MESSAGE_FOR_SERVER, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL, SERVER_UPDATE_ITEM_DATA,
   MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE,
   TodoListJSON, ItemJSON, TodoListWithItems, SERVER_DELETE_ITEM, SERVER_DELETE_ALL_ITEMS,
-  SERVER_DELETE_LIST, SERVER_UPDATE_LIST_DATA,
+  SERVER_DELETE_LIST, SERVER_UPDATE_LIST_DATA, SERVER_UPDATE_LIST_NAME,
 } from "../data/protocol";
 export {
   ItemID, ListID,
   MESSAGE_FOR_SERVER, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL,
   MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE,
-  TodoListJSON, ItemJSON, TodoListWithItems,
+  TodoListJSON, ItemJSON, TodoListWithItems,SERVER_UPDATE_LIST_NAME
 } from "../data/protocol";
 import {Http, Response}   from "@angular/http";
 import * as io            from "socket.io-client";
@@ -286,7 +286,15 @@ export class TodoListService {
     });
   }
 
-
+SERVER_UPDATE_NAME_LIST(ListID: ListID, newName: string){
+    //  type: "SERVER_UPDATE_LIST_NAME", ListID: ListID, name: string
+  const op: SERVER_UPDATE_LIST_NAME = {
+    type: "SERVER_UPDATE_LIST_NAME",
+    ListID: ListID,
+    name: newName
+  };
+  this.emit(op);
+}
   // _______________________________________________________________________________________________________________________________________
   getConnected(): Observable<boolean> {
     return this.connected.asObservable();
