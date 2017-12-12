@@ -48,8 +48,7 @@
       <p-calendar    *ngIf="isEditingLabel()"
                      dateFormat="dd/mm/yy"
                      [ngModel]="getDateEnd()"
-                     (onChange)="setDateEnd($event)"
-                     (onClearClick)="resetDate()"
+                     (onSelect)="setDateEnd($event)"
                      [showTime]="true"
                      showButtonBar="true"
                      [showIcon]="true"
@@ -58,9 +57,9 @@
       <p>Commentaire :</p>
       <form (change)="updateComment(comment.value)">
         <textarea
-                  class="comment"
-                  [value]="item.data.comment"
                   #comment
+                  class="comment"
+                  [value]="getComment()"
                   [disabled]="!editingLabel"
                   name="comment" size="35"></textarea>
       </form>

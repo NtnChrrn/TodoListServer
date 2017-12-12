@@ -81,7 +81,15 @@ export class TodoItemComponent implements OnInit, OnChanges {
    */
   setDateEnd(inputDate: any): void {
     const d = this.addZero(inputDate.getDate()) + "/" + this.addZero((inputDate.getMonth() + 1)) + "/" + inputDate.getFullYear() + " " + this.addZero(inputDate.getHours()) + ":" + this.addZero(inputDate.getMinutes());
+    const oldDate = this.item.data['dateEnd'];
+
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,{ dateEnd: d});
+    // Information
+    this.snackBar.open("Nouvelle date enregistrée",  'annuler', {
+      duration: 20000,
+    }).onAction().subscribe(() => {
+      this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,{ dateEnd: oldDate});
+    });
   }
 
   /* get Date end of item in string format
@@ -187,8 +195,13 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }
   }
 
+  getComment(): string {
+    if (this.item.data['comment'] === null || !this.item.data['comment']) {return ""; }
+    return this.item.data['comment'];
+  }
   setLabel(newLabel: string) {
     const oldLabel = this.item.label;
+
     this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id, newLabel);
     // Information
     this.snackBar.open("Désignation de la tâche enregistrée",  'annuler', {
