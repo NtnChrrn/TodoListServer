@@ -8,6 +8,8 @@ import {forEach} from "@angular/router/src/utils/collection";
 
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {TodoItemComponent} from "../todo-item/todo-item.component";
+import {MatSnackBar} from '@angular/material';
+
 @Component({
   selector: 'app-list-todo-item',
   templateUrl: './list-todo-item.component.html',
@@ -22,7 +24,7 @@ export class ListTodoItemComponent implements OnInit {
   private sub     : any;
   private draggedItem : any;
 
-  constructor(private todoListService: TodoListService, private route: ActivatedRoute) { }
+  constructor(private todoListService: TodoListService, private route: ActivatedRoute, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -57,6 +59,10 @@ export class ListTodoItemComponent implements OnInit {
   createItem(label: string) {
     if(label){
       this.todoListService.SERVER_CREATE_ITEM(this.list.id, label, null);
+    } else {
+      this.snackBar.open("Veuillez saisir un nom à la liste",  'Fermer', {
+        duration: 50000,
+      });
     }
   }
 
