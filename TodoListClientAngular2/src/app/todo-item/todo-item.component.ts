@@ -40,15 +40,15 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }
 
     // if date limit is out
-    if(this.getDateEnd() != null && this.getDateEndDateFormat() < today){
+    if (this.getDateEnd() != null && this.getDateEndDateFormat() < today) {
       color = "red";
       if (!this.checked) {
         this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, false);
       }
     }
     // if date limit is near out (current date + 1 day)
-    if(this.getDateEnd() != null
-      && this.getDateEndDateFormat() < new Date(today.getTime()+1* 86400000)
+    if (this.getDateEnd() != null
+      && this.getDateEndDateFormat() < new Date(today.getTime() + 1 * 86400000)
       && this.getDateEndDateFormat() > today){
       color = "#e67e22";
     }
@@ -187,18 +187,22 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }
   }
 
-  setLabel(label: string) {
-    this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id, label);
+  setLabel(newLabel: string) {
+    const oldLabel = this.item.label;
+    this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id, newLabel);
+    // Information
+    this.snackBar.open("Désignation de la tâche enregistrée",  'annuler', {
+      duration: 20000,
+    }).onAction().subscribe(() => {
+      this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id, oldLabel);
+    });
   }
 
   getEdition(): string {
-
     if (this.editingLabel === true) {
       return "Visualiser";
     }else {
       return "Editer";
     }
   }
-
-
 }
