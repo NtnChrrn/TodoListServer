@@ -56,11 +56,11 @@
                      title="Date de fin de la tâche" >
       </p-calendar>
       <p>Commentaire :</p>
-      <form>
+      <form (change)="updateComment(comment.value)">
         <textarea
                   class="comment"
-                  [(ngModel)]="item.data.comment"
-                  (blur)="updateComment()"
+                  [value]="item.data.comment"
+                  #comment
                   [disabled]="!editingLabel"
                   name="comment" size="35"></textarea>
       </form>

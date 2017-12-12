@@ -110,7 +110,7 @@ export class TodoListComponent implements OnInit {
     this.todoListService.SERVER_UPDATE_NAME_LIST(this.list.id, newName);
     // Information
     this.snackBar.open("Nom de la liste enregistré",  'annuler', {
-      duration: 50000,
+      duration: 20000,
     }).onAction().subscribe(() => {
       this.todoListService.SERVER_UPDATE_NAME_LIST(this.list.id, oldName);
     });
@@ -138,7 +138,6 @@ export class TodoListComponent implements OnInit {
 
   updateComment(newComment: string) {
     const oldComment = this.list.data['comment'];
-    console.log(oldComment);
     this.todoListService.SERVER_UPDATE_LIST_DATA(this.list.id,{comment:newComment});
     // Information
     this.snackBar.open("Commentaire enregistré",  'annuler', {

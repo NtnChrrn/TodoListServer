@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
 import {ConfirmationService} from 'primeng/primeng';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-todo-item',
@@ -23,32 +24,33 @@ export class TodoItemComponent implements OnInit, OnChanges {
   public  mouseOnButton   = false;
 
   constructor(private todoListService: TodoListService,
-              private confirmationService: ConfirmationService) { }
+              private confirmationService: ConfirmationService,
+              public snackBar: MatSnackBar) { }
 
   ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) { }
 
-  colorLigne(){
+  colorLigne() {
     let color;
-    let today : Date = new Date();
+    const  today: Date = new Date();
 
-    if(this.getDateEnd()!=null){
+    if (this.getDateEnd() !== null) {
       color = "black";
     }
 
     // if date limit is out
-    if(this.getDateEnd()!=null && this.getDateEndDateFormat() < today){
-      color="red";
-      if(!this.checked){
+    if(this.getDateEnd() != null && this.getDateEndDateFormat() < today){
+      color = "red";
+      if (!this.checked) {
         this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, false);
       }
     }
     // if date limit is near out (current date + 1 day)
-    if(this.getDateEnd()!=null
+    if(this.getDateEnd() != null
       && this.getDateEndDateFormat() < new Date(today.getTime()+1* 86400000)
       && this.getDateEndDateFormat() > today){
-      color="#e67e22";
+      color = "#e67e22";
     }
     /*let styles = {
       'border-left': 'solid 5px' + color
@@ -56,8 +58,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
     return color;
   }
 
-  colorDate(){
-    let styles = {
+  colorDate() {
+    const styles = {
       'color': this.colorLigne()
     }
     return styles;
@@ -67,19 +69,19 @@ export class TodoItemComponent implements OnInit, OnChanges {
   *  date any: 1
   *  return string: 01
   */
-  addZero(date: any): string{
-    if(date<10)return '0' + date;
-    else return date;
+  addZero(date: any): string {
+    if (date < 10) {return '0' + date;
+    }else {return date; }
   }
 
-  resetDate():void{
+  resetDate(): void {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,{dateEnd:null});
   }
   /* setDate from input date calendar
    */
   setDateEnd(inputDate: any): void {
-    let d = this.addZero(inputDate.getDate()) + "/" + this.addZero((inputDate.getMonth()+1)) + "/" + inputDate.getFullYear() + " " + this.addZero(inputDate.getHours()) + ":" + this.addZero(inputDate.getMinutes());
-    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,{dateEnd:d});
+    const d = this.addZero(inputDate.getDate()) + "/" + this.addZero((inputDate.getMonth() + 1)) + "/" + inputDate.getFullYear() + " " + this.addZero(inputDate.getHours()) + ":" + this.addZero(inputDate.getMinutes());
+    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,{ dateEnd: d});
   }
 
   /* get Date end of item in string format
@@ -95,7 +97,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   */
   getDateEndDateFormat(): Date {
     if (!this.item.data['dateEnd']) {return null; }
-    if (this.item.data['dateEnd']==null) {return null; }
+    if (this.item.data['dateEnd'] == null) {return null; }
 
 
     return new Date(this.item.data['dateEnd'].substring(6, 10) +
@@ -157,8 +159,15 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }else { this.showComment = true; }
   }
 
-  updateComment() {
-    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: this.item.data['comment']});
+  updateComment(newComment: string) {
+    const oldComment = this.item.data['comment'];
+    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: newComment});
+    // Information
+    this.snackBar.open("Commentaire enregistré",  'annuler', {
+      duration: 20000,
+    }).onAction().subscribe(() => {
+      this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: oldComment});
+    });
   }
 
   getColor(): string {
@@ -178,8 +187,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }
   }
 
-  setLabel(label : string){
-    this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id,label);
+  setLabel(label: string) {
+    this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id, label);
   }
 
   getEdition(): string {
