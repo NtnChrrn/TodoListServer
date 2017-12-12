@@ -13,9 +13,9 @@ import { MenuModule,
          CalendarModule,
          OverlayPanelModule,
          ConfirmDialogModule,
-          DragDropModule,
-        SidebarModule}
-        from 'primeng/primeng';
+         SidebarModule,
+         DialogModule,
+         DragDropModule}        from 'primeng/primeng';
 import { AppComponent }             from './app.component';
 import { TodoListComponent }        from './todo-list/todo-list.component';
 import { TodoItemComponent }        from './todo-item/todo-item.component';

@@ -58,10 +58,6 @@ export class ListTodoItemComponent implements OnInit {
     if(label){
       this.todoListService.SERVER_CREATE_ITEM(this.list.id, label, null);
     }
-    else{
-      console.log("Label null");
-
-    }
   }
 
   getColor(): string {
@@ -109,4 +105,3 @@ export class ListTodoItemComponent implements OnInit {
     this.draggedItem = null;
   }
 }
-
