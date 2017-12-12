@@ -173,11 +173,13 @@ export class TodoItemComponent implements OnInit, OnChanges {
     }
   }
 
-  getEdition() {
+  getEdition(): string {
     if (this.editingLabel === true) {
       return "Editer";
     }else {
       return "Visualiser";
     }
   }
+
+
 }

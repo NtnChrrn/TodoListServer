@@ -45,7 +45,7 @@
       <form (change)="updateComment(comment.value)" >
         <textarea
           #comment
-          [value]="list.data['comment']"
+          [value]="getComment()"
           [disabled]="!editingLabel" ></textarea>
       </form>
     </div>
