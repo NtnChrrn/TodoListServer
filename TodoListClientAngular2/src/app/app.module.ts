@@ -13,14 +13,10 @@ import { MenuModule,
          CalendarModule,
          OverlayPanelModule,
          ConfirmDialogModule,
-<<<<<<< HEAD
          SidebarModule,
-         DialogModule}        from 'primeng/primeng';
-=======
-          DragDropModule,
-        SidebarModule}
-        from 'primeng/primeng';
->>>>>>> 480d13f6af35e18eba0fbb3e4deb64177bd19f19
+         DialogModule,
+         DragDropModule}        from 'primeng/primeng';
+
 import { AppComponent }             from './app.component';
 import { TodoListComponent }        from './todo-list/todo-list.component';
 import { TodoItemComponent }        from './todo-item/todo-item.component';
