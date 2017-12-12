@@ -147,4 +147,8 @@ export class TodoListComponent implements OnInit {
       this.todoListService.SERVER_UPDATE_LIST_DATA(this.list.id,{comment:oldComment});
     });
   }
+  getComment(): string {
+    if (this.list.data['comment'] === null || !this.list.data['comment']) {return ""; }
+    return this.list.data['comment'];
+  }
 }

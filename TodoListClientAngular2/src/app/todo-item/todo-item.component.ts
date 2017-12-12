@@ -181,11 +181,15 @@ export class TodoItemComponent implements OnInit, OnChanges {
   setLabel(label : string){
     this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id,label);
   }
-  getEdition() {
+
+  getEdition(): string {
+
     if (this.editingLabel === true) {
       return "Visualiser";
     }else {
       return "Editer";
     }
   }
+
+
 }
