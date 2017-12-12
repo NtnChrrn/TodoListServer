@@ -60,7 +60,7 @@ export class ListTodoItemComponent implements OnInit {
     if(label){
       this.todoListService.SERVER_CREATE_ITEM(this.list.id, label, null);
     } else {
-      this.snackBar.open("Veuillez saisir un nom à la liste",  'Fermer', {
+      this.snackBar.open("Veuillez donner un nom à la tâche.",  'Fermer', {
         duration: 50000,
       });
     }
