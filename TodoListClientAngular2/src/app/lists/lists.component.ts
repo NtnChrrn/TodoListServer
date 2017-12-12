@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TodoListWithItems, TodoListJSON, TodoListService, ItemJSON} from "../todo-list.service";
 import {List} from "immutable";
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-lists',
@@ -10,7 +11,7 @@ import {List} from "immutable";
 export class ListsComponent implements OnInit {
   lists = List<TodoListJSON>();
 
-  constructor(private todoListService: TodoListService) { }
+  constructor(private todoListService: TodoListService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -20,7 +21,14 @@ export class ListsComponent implements OnInit {
   }
 
   createList(name: string) {
-    this.todoListService.SERVER_CREATE_NEW_LIST(name);
+    if(name){
+      this.todoListService.SERVER_CREATE_NEW_LIST(name);
+    } else {
+      this.snackBar.open("Veuillez donner un nom à la liste.",  'Fermer', {
+        duration: 50000,
+      });
+    }
+
   }
 
 }
