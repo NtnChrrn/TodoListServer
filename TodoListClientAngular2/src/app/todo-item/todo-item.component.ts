@@ -86,7 +86,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,{ dateEnd: d});
     // Information
     this.snackBar.open("Nouvelle date enregistrée",  'annuler', {
-      duration: 20000,
+      duration: 10000,
     }).onAction().subscribe(() => {
       this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id,{ dateEnd: oldDate});
     });
@@ -172,7 +172,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: newComment});
     // Information
     this.snackBar.open("Commentaire enregistré",  'annuler', {
-      duration: 20000,
+      duration: 10000,
     }).onAction().subscribe(() => {
       this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, {comment: oldComment});
     });
@@ -205,7 +205,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id, newLabel);
     // Information
     this.snackBar.open("Désignation de la tâche enregistrée",  'annuler', {
-      duration: 20000,
+      duration: 10000,
     }).onAction().subscribe(() => {
       this.todoListService.SERVER_UPDATE_ITEM_LABEL(this.listId, this.item.id, oldLabel);
     });
