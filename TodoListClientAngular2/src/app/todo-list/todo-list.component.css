@@ -70,3 +70,9 @@ span.tache{
 .titre-tache:hover{
   color: black;
 }
+
+.comment{
+  height: 150px;
+  width: 250px;
+  resize: none;
+}
