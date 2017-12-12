@@ -12,13 +12,12 @@
         <ul class="points">
           <li><span class="point yellow"></span>tâches non terminées</li>
           <li><span class="point red"></span>tâches échouées</li>
-          <li><span class="point green"></span>tâches réussites</li>
+          <li><span class="point green"></span>tâches réalisées</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
-
 <!-- display lists -->
 <section>
   <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock"></app-todo-list>

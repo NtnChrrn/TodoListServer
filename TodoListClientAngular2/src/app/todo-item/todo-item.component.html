@@ -1,8 +1,13 @@
-<section (mouseleave)="mouseOnButton = false;" (mouseover)="mouseOnButton = true;"
-  xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<section class="ligne"
+         (mouseleave)="mouseOnButton = false;"
+         (mouseover)="mouseOnButton = true;"
+          xmlns="http://www.w3.org/1999/html"
+         (dblclick)="display=true">
   <!-- columns table -->
-  <td class="colorDate" [ngStyle]="colorBorder()"><i class="fa fa-calendar" aria-hidden="true"></i></td>
-  <td class="columnNumber">{{index+1}}</td>
+
+  <td class="colorDate" [ngStyle]="colorDate()"><i class="fa fa-calendar" aria-hidden="true" *ngIf="haveDate()"></i></td>
+  <td class="columnComment"><i class="fa fa-comment" aria-hidden="true" *ngIf="haveComment()"></i> </td>
+  <!--<td class="columnNumber">{{index+1}}</td>-->
   <td class="columnCheck">
           <p-triStateCheckbox [ngModel]="item.checked"
                               (ngModelChange)="check(item.checked)">
@@ -21,15 +26,28 @@
     <button class="buttonTest" [ngClass]="{'activeButton': mouseOnButton}" (click)="display=true" pButton icon="fa fa-eye fa-3" label="Détails"></button>
     <button class="buttonTest ui-button-danger" [ngClass]="{'activeButton': mouseOnButton}" (click)="confirm()" pButton icon="fa fa-trash-o fa-3" label="Supprimer"></button>
   </td>
-
+  <!------------------------------------------------------------------------------------------ -->
   <!-- sidebar bar -->
   <p-sidebar [(visible)]="display" position="right" >
+    <mat-slide-toggle (click)="editLabel2()"
+                      color="warn"
+                      matTooltip="Tooltip!"
+                      matTooltipPosition="below">{{getEdition()}}</mat-slide-toggle>
+    <HR>
     <div class="sidebar">
-      <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">{{item.label}}</label>
-      <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
-        <input #newLabel type="text" [value]="item.label"/>
+      <h1 *ngIf="!isEditingLabel()">{{item.label}}</h1>
+      <form  *ngIf="isEditingLabel()" (input)="setLabel(newLabel.value)" >
+        <input #newLabel type="text"
+               [value]="item.label"
+               [disabled]="!editingLabel"
+                />
       </form>
-      <p-calendar    dateFormat="dd/mm/yy"
+      <p matTooltip="Tooltip!"
+         matTooltipPosition="below">A faire avant le :</p>
+      <label *ngIf="!isEditingLabel()">{{dateToString()}}</label>
+
+      <p-calendar    *ngIf="isEditingLabel()"
+                     dateFormat="dd/mm/yy"
                      [ngModel]="getDateEnd()"
                      (onSelect)="setDateEnd($event)"
                      [showTime]="true"
@@ -39,7 +57,12 @@
       </p-calendar>
       <p>Commentaire :</p>
       <form>
-        <textarea [(ngModel)]="item.data.comment" (input)="updateComment()" name="comment" size="35"></textarea>
+        <textarea
+                  class="comment"
+                  [(ngModel)]="item.data.comment"
+                  (blur)="updateComment()"
+                  [disabled]="!editingLabel"
+                  name="comment" size="35"></textarea>
       </form>
     </div>
   </p-sidebar>

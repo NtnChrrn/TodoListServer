@@ -44,10 +44,19 @@ export class TodoListComponent implements OnInit {
     }
     return nb;
   }
+
   getPercentageOfRealised(): number {
     const nbCheck = this.getNbChecked();
-    if (this.list.items.length !== 0 && nbCheck !== 0) { return nbCheck / this.list.items.length * 100; }
+    if (this.list.items.length !== 0 && nbCheck !== 0) { return ((nbCheck / this.list.items.length * 100)); }
     return 0;
+  }
+
+  getPercentageOfRealisedFixed(): number {
+    const total = +this.getPercentageOfUnrealised().toFixed(1)
+      + +this.getPercentageOfFailed().toFixed(1)
+      + +this.getPercentageOfRealised().toFixed(1);
+    if (total > 100) { return +this.getPercentageOfRealised().toFixed(1) - 0.1;
+    }else { return +this.getPercentageOfRealised().toFixed(1); }
   }
 
   /* return number of items failed in the list */
@@ -81,6 +90,13 @@ export class TodoListComponent implements OnInit {
 
   getColors(){
     return this.todoListService.getColors();
+  }
+
+  duplicateList(name, items) {
+    const id = this.todoListService.SERVER_CREATE_NEW_LIST(name);
+    for (const entry of items) {
+      this.todoListService.SERVER_CREATE_ITEM(id.valueOf(), entry.label, entry.checked, entry.data);
+    }
   }
 
 }

@@ -16,6 +16,14 @@ td{
   vertical-align: middle;
 }
 
+.ligne{
+  padding: 5px;
+}
+
+.ligne:hover{
+  background-color: #DBDBDB;
+}
+
 .columnCheck{
   width: 40px;
   text-align: center;
@@ -26,8 +34,18 @@ td{
   /*border-bottom: solid 1px black;*/
 }
 .comment{
-  height: 30px;
-  margin-left:50px;
+  height: 150px;
+  width: 250px;
+  resize: none;
+}
+
+.colorDate{
+  width: 20px;
+}
+
+.columnComment{
+  width: 15px;
+
 }
 
 .columnDelete{
@@ -54,6 +72,15 @@ td{
   opacity: 0;
 }
 
+
+
+/*::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: blue; /*replace with your color*/
+/*}*/
+
+/*::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: skyblue;  /*replace with your color*/
+/*}*/
 
 
 

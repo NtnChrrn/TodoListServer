@@ -1,9 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ListID, ItemJSON, TodoListService}  from "../todo-list.service";
+import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
 import {ConfirmationService} from 'primeng/primeng';
-
-
-
 
 @Component({
   selector: 'app-todo-item',
@@ -18,27 +15,23 @@ export class TodoItemComponent implements OnInit, OnChanges {
   @Input() clock:   number;
   @Input() index:   number;
   @Input() edit:    boolean;
-  @Input() color:    string;
+  @Input() color:   string;
 
-  private checked : any;
-  private showComment : boolean = false;
-  private editingLabel = false;
-  mouseOnButton = false;
+  private checked:  any;
+  private showComment     = false;
+  private editingLabel    = false;
+  public  mouseOnButton   = false;
 
-  constructor(private todoListService: TodoListService,private confirmationService: ConfirmationService) { }
+  constructor(private todoListService: TodoListService,
+              private confirmationService: ConfirmationService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) { }
 
   colorLigne(){
     let color;
     let today : Date = new Date();
-
-    if(this.getDateEnd()==null){
-      color = "white";
-    }
 
     if(this.getDateEnd()!=null){
       color = "black";
@@ -63,7 +56,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
     return color;
   }
 
-  colorBorder(){
+  colorDate(){
     let styles = {
       'color': this.colorLigne()
     }
@@ -74,7 +67,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   *  date any: 1
   *  return string: 01
   */
-  addZero(date : any): string{
+  addZero(date: any): string{
     if(date<10)return '0' + date;
     else return date;
   }
@@ -89,7 +82,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   /* get Date end of item in string format
   *  return string : 15/11/2017 17:15
   */
-  getDateEnd(){
+  getDateEnd() {
     return this.item.data['dateEnd'] ? this.item.data['dateEnd'].toString() : null;
   }
 
@@ -97,14 +90,27 @@ export class TodoItemComponent implements OnInit, OnChanges {
   *  dateEnd: 15/11/2017 17:15
   *  return Date : 2017-11-15T17:15:00
   */
-  getDateEndDateFormat(): Date{
-    if(this.item.data['dateEnd']==null)return null;
+  getDateEndDateFormat(): Date {
+    if (!this.item.data['dateEnd']) {return null; }
 
-    return new Date(this.item.data['dateEnd'].substring(6,10)+
-              '-' + this.item.data['dateEnd'].substring(3,5) +
-              '-' + this.item.data['dateEnd'].substring(0,2) +
-              'T' + this.item.data['dateEnd'].substring(11,13) +
-              ':' + this.item.data['dateEnd'].substring(14,16) +':00');
+    return new Date(this.item.data['dateEnd'].substring(6, 10) +
+              '-' + this.item.data['dateEnd'].substring(3, 5) +
+              '-' + this.item.data['dateEnd'].substring(0, 2) +
+              'T' + this.item.data['dateEnd'].substring(11, 13) +
+              ':' + this.item.data['dateEnd'].substring(14, 16) + ':00');
+  }
+
+  dateToString(): string {
+    const tab_jour = new Array("Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+    const tab_mois = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+                                "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+    const date: Date = this.getDateEndDateFormat();
+
+    if (!this.getDateEndDateFormat()) {return null; }
+    return tab_jour[date.getDay()] + " "
+      + date.getDate()
+      + " " + tab_mois[date.getMonth()]
+      + ", " + date.getHours() + "h" + date.getMinutes();
   }
 
   isEditingLabel(): boolean {
@@ -115,17 +121,18 @@ export class TodoItemComponent implements OnInit, OnChanges {
     this.editingLabel = edit;
   }
 
+  editLabel2() {
+    this.editingLabel = !this.editingLabel;
+  }
+
   check(checked: any) {
-    if(checked == null){
-      this.checked = true;
+    if (checked === null) {
+      this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, true);
+    }else if (checked === false) {
+      this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, null);
+    }else if (checked === true) {
+      this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, false);
     }
-    else if(checked == false){
-      this.checked = null;
-    }
-    else if(checked == true){
-      this.checked = false;
-    }
-    this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, this.checked);
   }
 
   confirm() {
@@ -138,22 +145,11 @@ export class TodoItemComponent implements OnInit, OnChanges {
       },
 
     });
-
-
   }
 
-  isExistigComment(){
-    if (this.item.data['comment']==null) return false;
-    if (this.item.data['comment']=='') return false;
-    return true;
-  }
-
-  toggleComment(){
-    if(this.showComment == true){
-      this.showComment = false;
-    }else {
-      this.showComment = true;
-    }
+  toggleComment() {
+    if (this.showComment === true) { this.showComment = false;
+    }else { this.showComment = true; }
   }
 
   updateComment() {
@@ -162,5 +158,26 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   getColor(): string {
     return this.color;
+  }
+
+  haveDate(): boolean {
+    if (this.getDateEnd() == null) { return false;
+    }else { return true; }
+  }
+
+  haveComment(): boolean {
+    if (this.item.data['comment'] == null || this.item.data['comment'] === '') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  getEdition() {
+    if (this.editingLabel === true) {
+      return "Editer";
+    }else {
+      return "Visualiser";
+    }
   }
 }
